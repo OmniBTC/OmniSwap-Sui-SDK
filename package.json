@@ -12,6 +12,7 @@
   "dependencies": {
     "@mysten/sui.js": "^0.15.0",
     "@types/dotenv": "^8.2.0",
+    "decimal.js": "^10.4.2",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {

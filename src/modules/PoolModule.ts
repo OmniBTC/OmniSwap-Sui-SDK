@@ -1,49 +1,50 @@
 import { getObjectId,JsonRpcProvider, getObjectFields } from '@mysten/sui.js';
+import { IModule } from '../interfaces/IModule'
+import { SDK } from '../sdk';
+import { PoolInfo } from '../types';
 
 /// Current fee is 0.3%
 const FEE_MULTIPLIER: bigint = 30n;
     /// The integer scaling setting for fees calculation.
 const FEE_SCALE: bigint = 10000n;
 
-export interface PoolInfo {
-    objectId: string,
-    global: string,
-    coinXAmount: bigint,
-    coinYAmount: bigint,
-    lpType: string,
-    lpValue: bigint
-}
+export class PoolModule implements IModule {
 
-export class Pool {
-   public provider: JsonRpcProvider;
+   protected _sdk: SDK;
    
-   constructor(provider:JsonRpcProvider) {
-        this.provider = provider;
+   get sdk() {
+     return this._sdk;
    }
    
+   constructor(sdk: SDK) {
+     this._sdk = sdk;
+   }
+
    async getPoolList():Promise<void>{  
    }
 
    async getPoolInfo(poolAddress:string): Promise<PoolInfo> {
-        const moveObject = await this.provider.getObject(poolAddress);
+        const moveObject = await this._sdk.jsonRpcProvider.getObject(poolAddress);
         const id = getObjectId(moveObject);
         const fields = getObjectFields(moveObject);
         const lpSupply = fields!['lp_supply'];
         const poolInfo: PoolInfo = {
-            objectId: id,
+            object_id: id,
             global: fields!['global'],
-            coinXAmount: BigInt(fields!['coin_x']),
-            coinYAmount: BigInt(fields!['coin_y']),
-            lpType: lpSupply?.type!,
-            lpValue: lpSupply?.fields['value']
+            coin_x: BigInt(fields!['coin_x']),
+            coin_y: BigInt(fields!['coin_y']),
+            fee_coin_x: BigInt(fields!['fee_coin_x']),
+            fee_coin_y: BigInt(fields!['fee_coin_y']),
+            lp_type: lpSupply?.type!,
+            lp_supply: lpSupply?.fields['value']
         }
         return Promise.resolve(poolInfo);
    }
 
    async getPrice(poolAddress:string, coinIn:bigint):Promise<bigint> {
         let poolInfo = await this.getPoolInfo(poolAddress);
-        let reserveIn = poolInfo.coinXAmount;
-        let reserveOut = poolInfo.coinYAmount;
+        let reserveIn = poolInfo.coin_x;
+        let reserveOut = poolInfo.coin_y;
         //let lpSupply = poolInfo.lpValue;
         let fee_multiplier = FEE_SCALE - FEE_MULTIPLIER;
 
@@ -55,4 +56,3 @@ export class Pool {
         return Promise.resolve(amounOut);
    }
 }
-
