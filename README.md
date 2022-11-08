@@ -1,5 +1,3 @@
-# sui-amm-sdk
-
 ## Usage
 
 ### Init SDK
