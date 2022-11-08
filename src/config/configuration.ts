@@ -1,10 +1,10 @@
-import { getObjectId,JsonRpcProvider, Network,Coin } from '@mysten/sui.js';
+import {  Network  } from '@mysten/sui.js';
 
 export class NetworkConfiguration {
     constructor(
       public name: string,
       public fullNodeUrl: string,
-      public omniswapAddress: string,
+      public packageObjectId: string,
       public isMainNet = false
     ) {}
   }

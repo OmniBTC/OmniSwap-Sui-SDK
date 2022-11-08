@@ -4,9 +4,9 @@ import { SDK } from '../sdk';
 import { PoolInfo } from '../types';
 
 /// Current fee is 0.3%
-const FEE_MULTIPLIER: bigint = 30n;
+const FEE_MULTIPLIER = 30;
     /// The integer scaling setting for fees calculation.
-const FEE_SCALE: bigint = 10000n;
+const FEE_SCALE = 10000;
 
 export class PoolModule implements IModule {
 
@@ -20,6 +20,7 @@ export class PoolModule implements IModule {
      this._sdk = sdk;
    }
 
+   // eslint-disable-next-line @typescript-eslint/no-empty-function
    async getPoolList():Promise<void>{  
    }
 
@@ -27,30 +28,31 @@ export class PoolModule implements IModule {
         const moveObject = await this._sdk.jsonRpcProvider.getObject(poolAddress);
         const id = getObjectId(moveObject);
         const fields = getObjectFields(moveObject);
-        const lpSupply = fields!['lp_supply'];
+        const lpSupply = fields?.['lp_supply'];
         const poolInfo: PoolInfo = {
             object_id: id,
-            global: fields!['global'],
-            coin_x: BigInt(fields!['coin_x']),
-            coin_y: BigInt(fields!['coin_y']),
-            fee_coin_x: BigInt(fields!['fee_coin_x']),
-            fee_coin_y: BigInt(fields!['fee_coin_y']),
-            lp_type: lpSupply?.type!,
+            global: fields?.['global'],
+            coin_x: BigInt(fields?.['coin_x']),
+            coin_y: BigInt(fields?.['coin_y']),
+            fee_coin_x: BigInt(fields?.['fee_coin_x']),
+            fee_coin_y: BigInt(fields?.['fee_coin_y']),
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
+            lp_type: String(lpSupply?.type!),
             lp_supply: lpSupply?.fields['value']
         }
         return Promise.resolve(poolInfo);
    }
 
    async getPrice(poolAddress:string, coinIn:bigint):Promise<bigint> {
-        let poolInfo = await this.getPoolInfo(poolAddress);
-        let reserveIn = poolInfo.coin_x;
-        let reserveOut = poolInfo.coin_y;
+        const poolInfo = await this.getPoolInfo(poolAddress);
+        const reserveIn = poolInfo.coin_x;
+        const reserveOut = poolInfo.coin_y;
         //let lpSupply = poolInfo.lpValue;
-        let fee_multiplier = FEE_SCALE - FEE_MULTIPLIER;
+        const fee_multiplier = FEE_SCALE - FEE_MULTIPLIER;
 
-        let coin_in_val_after_fees = coinIn * fee_multiplier;
+        const coin_in_val_after_fees = coinIn * BigInt(fee_multiplier);
         // reserve_in size after adding coin_in (scaled to 1000)
-        let new_reserve_in = (reserveIn * FEE_SCALE) + coin_in_val_after_fees;
+        const new_reserve_in = (reserveIn * BigInt(FEE_SCALE)) + coin_in_val_after_fees;
 
         const amounOut = coin_in_val_after_fees * reserveOut / new_reserve_in;
         return Promise.resolve(amounOut);

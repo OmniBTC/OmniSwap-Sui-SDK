@@ -8,3 +8,12 @@ export type PoolInfo = {
     lp_type: string,
     lp_supply: bigint
 };
+
+export type TxPayloadCallFunction = {
+    packageObjectId: string;
+    module: string;
+    function: string;
+    typeArguments: string[];
+    arguments: string[];
+    gasBudget: number;
+  };
