@@ -4,7 +4,7 @@
 
 ### Init SDK
 
-```
+```ts
 export const POOL_SUI_USDT = "0xdc117aec53ba851e1fca972c95bc1c2f794bfadb";
 import { SDK } from './sdk';
 import { DEVNET_CONFIG } from './config';
