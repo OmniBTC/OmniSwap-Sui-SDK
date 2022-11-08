@@ -10,7 +10,7 @@ export const SUI_COIN_TYPE = "0x2::sui::SUI";
 
     const poolDetail = await sdk.Pool.getPoolInfo(POOL_SUI_USDT);
     console.log(poolDetail);
-    const price = await sdk.Pool.getPrice(POOL_SUI_USDT,1n)
+    const price = await sdk.Pool.getPrice(POOL_SUI_USDT,BigInt(1))
     console.log(`price: ${price}`)
 
     const token = await sdk.Token.getTokenBalance(address,SUI_COIN_TYPE);

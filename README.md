@@ -1,2 +1,1 @@
-# sui-amm-tools
-# sui-amm-tools
+# sui-amm-sdk
