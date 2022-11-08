@@ -8,8 +8,8 @@ const FEE_SCALE: bigint = 10000n;
 export interface PoolInfo {
     objectId: string,
     global: string,
-    tokenX: bigint,
-    tokenY: bigint,
+    coinXAmount: bigint,
+    coinYAmount: bigint,
     lpType: string,
     lpValue: bigint
 }
@@ -32,8 +32,8 @@ export class Pool {
         const poolInfo: PoolInfo = {
             objectId: id,
             global: fields!['global'],
-            tokenX: fields!['sui'],
-            tokenY: fields!['token'],
+            coinXAmount: BigInt(fields!['coin_x']),
+            coinYAmount: BigInt(fields!['coin_y']),
             lpType: lpSupply?.type!,
             lpValue: lpSupply?.fields['value']
         }
@@ -42,10 +42,9 @@ export class Pool {
 
    async getPrice(poolAddress:string, coinIn:bigint):Promise<bigint> {
         let poolInfo = await this.getPoolInfo(poolAddress);
-        let reserveIn = poolInfo.tokenX;
-        let reserveOut = poolInfo.tokenY;
+        let reserveIn = poolInfo.coinXAmount;
+        let reserveOut = poolInfo.coinYAmount;
         //let lpSupply = poolInfo.lpValue;
-
         let fee_multiplier = FEE_SCALE - FEE_MULTIPLIER;
 
         let coin_in_val_after_fees = coinIn * fee_multiplier;

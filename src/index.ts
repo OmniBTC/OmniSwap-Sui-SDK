@@ -13,6 +13,8 @@ const provider = new JsonRpcProvider(Network.DEVNET);
     console.log(`balance: ${balance}`)
     const pool = new Pool(provider);
     const poolDetail =  await pool.getPoolInfo(POOL_SUI_USDT);
-    console.log(JSON.stringify(poolDetail));
+    console.log(poolDetail);
+    const price = await pool.getPrice(POOL_SUI_USDT,1n)
+    console.log(`price: ${price}`)
 
 })();
