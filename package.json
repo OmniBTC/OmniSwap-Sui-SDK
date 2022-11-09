@@ -1,5 +1,5 @@
 {
-  "name": "omnisuiswap-sdk",
+  "name": "@omnibtc/omniswap-sui-sdk",
   "version": "0.0.1",
   "description": "",
   "main": "./dist/tsc/main.js",
