@@ -16,7 +16,7 @@ export class NetworkConfiguration {
      Network.DEVNET,
     '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
     '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
-    '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f'
+    '0x19465f7b8008aa1443269808840856a3c8b2c119'
   );
   
   
@@ -25,7 +25,7 @@ export class NetworkConfiguration {
      Network.DEVNET,
      '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
      '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
-     '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f'
+     '0x19465f7b8008aa1443269808840856a3c8b2c119'
   );
 
   export const DEVNET_CONFIG = new NetworkConfiguration(
@@ -33,7 +33,7 @@ export class NetworkConfiguration {
      Network.DEVNET,
     '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
     '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
-    '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f'
+    '0x19465f7b8008aa1443269808840856a3c8b2c119'
   );
 
   export const CONFIGS = {

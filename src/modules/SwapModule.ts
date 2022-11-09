@@ -1,11 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { getObjectId,JsonRpcProvider, getObjectFields } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
-import { extractAddressFromType, isSortedSymbols} from "../utils/contracts";
-import { TxPayloadCallFunction } from '../types'
 
-import Decimal from "decimal.js";
 
 export type CalculateRatesParams = {
   fromToken: string;
@@ -44,16 +41,5 @@ export class SwapModule implements IModule {
     constructor(sdk: SDK) {
       this._sdk = sdk;
     }
-
-    async calculateRates(params: CalculateRatesParams):Promise<void>{
-
-    }
-
-    createSwapTransactionPayload(params: CreateTXPayloadParams):void {
-      const { packageObjectId } = this.sdk.networkOptions;
-      
-
-    }
-
  }
  

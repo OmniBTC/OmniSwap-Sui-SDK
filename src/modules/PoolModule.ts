@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { getObjectId, getObjectFields } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
-import { PoolInfo } from '../types';
+import { Pool,PoolInfo } from '../types';
 
 /// Current fee is 0.3%
 const FEE_MULTIPLIER = 30;
@@ -21,21 +22,39 @@ export class PoolModule implements IModule {
    }
 
    // eslint-disable-next-line @typescript-eslint/no-empty-function
-   async getPoolList():Promise<void>{  
+   async getPoolList():Promise<Pool[]>{  
+      const { poolsDynamicId } = this.sdk.networkOptions;
+      const poolsObjects = await this._sdk.jsonRpcProvider.getObjectsOwnedByObject(
+        poolsDynamicId
+      );
+      const pools:Pool[] = [];
+      poolsObjects.forEach(pool=> {
+        pools.push({
+          pool_addr: pool['objectId'],
+          pool_type: pool['type'],
+        })
+      })
+      return Promise.resolve(pools)
    }
 
-   async getPoolInfo(poolAddress:string): Promise<PoolInfo> {
-        const moveObject = await this._sdk.jsonRpcProvider.getObject(poolAddress);
+   async getPoolInfo(coinXType:string, coinYType: string): Promise<PoolInfo> {
+        const poolList:Pool[] = await this.getPoolList();
+        const pool:Pool | undefined = poolList.find(pool => {
+          return pool.pool_type.includes(coinXType) && pool.pool_type.includes(coinYType);
+        })
+        
+        const moveObject = await this._sdk.jsonRpcProvider.getObject(pool!.pool_addr);
+
         const id = getObjectId(moveObject);
         const fields = getObjectFields(moveObject);
-        const lpSupply = fields?.['lp_supply'];
+        const lpSupply = fields?.value?.['lp_supply'];
         const poolInfo: PoolInfo = {
             object_id: id,
-            global: fields?.['global'],
-            coin_x: BigInt(fields?.['coin_x']),
-            coin_y: BigInt(fields?.['coin_y']),
-            fee_coin_x: BigInt(fields?.['fee_coin_x']),
-            fee_coin_y: BigInt(fields?.['fee_coin_y']),
+            global: fields?.value?.['global'],
+            coin_x: BigInt(fields?.value?.['coin_x']),
+            coin_y: BigInt(fields?.value?.['coin_y']),
+            fee_coin_x: BigInt(fields?.value?.['fee_coin_x']),
+            fee_coin_y: BigInt(fields?.value?.['fee_coin_y']),
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
             lp_type: String(lpSupply?.type!),
             lp_supply: lpSupply?.fields['value']
@@ -43,8 +62,8 @@ export class PoolModule implements IModule {
         return Promise.resolve(poolInfo);
    }
 
-   async getPrice(poolAddress:string, coinIn:bigint):Promise<bigint> {
-        const poolInfo = await this.getPoolInfo(poolAddress);
+   async getPrice(coinXType:string, coinYType: string, coinIn:bigint):Promise<bigint> {
+        const poolInfo = await this.getPoolInfo(coinXType, coinYType);
         const reserveIn = poolInfo.coin_x;
         const reserveOut = poolInfo.coin_y;
         //let lpSupply = poolInfo.lpValue;
