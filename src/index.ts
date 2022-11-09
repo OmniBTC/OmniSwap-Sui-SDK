@@ -3,7 +3,7 @@ import { SDK } from './sdk/sdk';
 import { DEVNET_CONFIG } from './config/configuration';
 //import { CreateSwapTXPayloadParams } from './modules';
 const SUI_COIN_TYPE = "0x2::sui::SUI";
-const USDT_COIN_TYPE = "0x23d2590e4f6afdbb5c599ef7b1d6d93f5e10afd3::usdt::USDT";
+const USDT_COIN_TYPE = "0xbf2972612002f472b5bd21394b4417d75c9fe887::usdt::USDT";
 
 (async function main() {
     const address = '0x036e2406b8cf1fc4541ed6d0e252c77b094d0fd9';

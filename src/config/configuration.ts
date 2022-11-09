@@ -31,9 +31,9 @@ export class NetworkConfiguration {
   export const DEVNET_CONFIG = new NetworkConfiguration(
     'testnet',
      Network.DEVNET,
-    '0xcfde6e8505975c2c7a89111c08717bc6975325dd',
-    '0xf962ddb9ededccfb9a1300d640d8301bb682d633',
-    '0x15e2ef5cfaaddf70489dd35dd4ef75f5d9c0a696'
+    '0x6b2b8d00733280d641a506e3865de71a0e9398e9',
+    '0xa65f9fb71b9989c7bb530c2c077e5decc7fe1d9d',
+    '0xb445efd1984827519c9d9666815b6f93256f16c4'
   );
 
   export const CONFIGS = {
