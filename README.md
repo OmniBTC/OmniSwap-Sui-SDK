@@ -1,4 +1,4 @@
-## Omniswap-Sui-SDK
+## OmniSwap-Sui-SDK
 The typescript SDK for [Sui-AMM-swap](https://github.com/OmniBTC/Sui-AMM-swap)
 
 ## Usage
