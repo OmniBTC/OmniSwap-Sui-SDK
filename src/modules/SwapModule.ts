@@ -3,7 +3,7 @@
 import { MoveCallTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk/sdk';
-
+import { FEE_MULTIPLIER, FEE_SCALE } from '../constants'
 
 export type CalculateRatesParams = {
   fromToken: string;
@@ -36,6 +36,28 @@ export class SwapModule implements IModule {
     constructor(sdk: SDK) {
       this._sdk = sdk;
     }
+
+    getAmountOut(coin_in: bigint,reserve_in: bigint, reserve_out: bigint) {
+      const fee_multiplier = FEE_SCALE - FEE_MULTIPLIER;
+      const coin_in_after_fee = coin_in - (coin_in* BigInt(FEE_MULTIPLIER))/ BigInt(FEE_SCALE);
+    
+      const coin_in_val_after_fees = coin_in_after_fee  * BigInt(fee_multiplier);
+    
+      const new_reserve_in = (reserve_in * BigInt(FEE_SCALE)) + coin_in_val_after_fees;
+    
+      const amountOut = coin_in_val_after_fees * reserve_out / new_reserve_in;
+      return amountOut
+    
+    } 
+
+    async calculateAmountOut(coin_x:string,coin_y:string,coin_in_value:number) {
+      const pool = await this.sdk.Pool.getPoolInfo(coin_x, coin_y);
+      const coin_x_reserve = pool.coin_x;
+      const coin_y_reserce = pool.coin_y;
+      const coin_x_in = BigInt(coin_in_value);
+      const amoutOut = this.getAmountOut(coin_x_in,coin_x_reserve,coin_y_reserce);
+      return amoutOut;
+    } 
 
     buildSwapTransaction(params: CreateSwapTXPayloadParams): MoveCallTransaction{
       const {  packageObjectId,globalId } = this.sdk.networkOptions;
