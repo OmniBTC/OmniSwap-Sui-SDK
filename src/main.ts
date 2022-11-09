@@ -1,4 +1,4 @@
-import { SDK } from "./sdk";
+import { SDK } from "./sdk/sdk";
 import { SwapModule,TokenModule,PoolModule } from "./modules";
 import { NetworkConfiguration } from './config'
 

@@ -1,6 +1,6 @@
 import { JsonRpcProvider, RpcTxnDataSerializer, TxnDataSerializer} from '@mysten/sui.js';
-import { NetworkConfiguration } from './config/configuration';
-import { SwapModule,TokenModule,PoolModule } from './modules';
+import { NetworkConfiguration } from '../config/configuration';
+import { SwapModule,TokenModule,PoolModule } from '../modules';
 
 export class SDK {
     protected _jsonRpcProvider: JsonRpcProvider;

@@ -1,5 +1,5 @@
 export const POOL_SUI_USDT = "0xdc117aec53ba851e1fca972c95bc1c2f794bfadb";
-import { SDK } from './sdk';
+import { SDK } from './sdk/sdk';
 import { DEVNET_CONFIG } from './config/configuration';
 //import { CreateSwapTXPayloadParams } from './modules';
 const SUI_COIN_TYPE = "0x2::sui::SUI";
