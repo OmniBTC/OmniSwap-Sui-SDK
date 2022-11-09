@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { getObjectId, getObjectFields } from '@mysten/sui.js';
+import { getObjectId, getObjectFields, MoveCallTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
 import { Pool,PoolInfo } from '../types';
@@ -8,6 +8,17 @@ import { Pool,PoolInfo } from '../types';
 const FEE_MULTIPLIER = 30;
     /// The integer scaling setting for fees calculation.
 const FEE_SCALE = 10000;
+
+export type CreateAddLiquidTXPayloadParams = {
+  coin_x: string;
+  coin_y: string;
+  coin_x_objectIds: string[],
+  coin_y_objectIds: string[],
+  coin_x_amount: number;
+  coin_y_amount: number;
+  gasPaymentObjectId: string;
+  slippage: number;
+}
 
 export class PoolModule implements IModule {
 
@@ -79,4 +90,20 @@ export class PoolModule implements IModule {
         const amounOut = coin_in_val_after_fees * reserveOut / new_reserve_in;
         return Promise.resolve(amounOut);
    }
+
+  buildAddLiquidTransAction(params: CreateAddLiquidTXPayloadParams): MoveCallTransaction{
+     const {  packageObjectId,globalId } = this.sdk.networkOptions;
+
+     const txn:MoveCallTransaction = {
+       packageObjectId:packageObjectId,
+       module: 'interface',
+       function: 'multi_add_liquidity',
+       arguments: [globalId,params.coin_x_objectIds,params.coin_x_amount, 
+        params.coin_x_amount * params.slippage, params.coin_y_objectIds,params.coin_y_amount,params.coin_y_amount*params.slippage],
+       typeArguments: [params.coin_x,params.coin_y],
+       gasPayment: params.gasPaymentObjectId,
+       gasBudget: 10000,
+     }
+     return txn;
+   } 
 }
