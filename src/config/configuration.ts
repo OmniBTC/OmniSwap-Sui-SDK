@@ -5,6 +5,8 @@ export class NetworkConfiguration {
       public name: string,
       public fullNodeUrl: string,
       public packageObjectId: string,
+      public globalId: string,
+      public poolsDynamicId: string,
       public isMainNet = false
     ) {}
   }
@@ -12,20 +14,26 @@ export class NetworkConfiguration {
   export const MAINNET_CONFIG = new NetworkConfiguration(
     'mainnet',
      Network.DEVNET,
-    '0x3473693143ec59cf171d5cb68cb3d8646f4e23ecba2366494dea3bbad4303da4'
+    '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
+    '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
+    '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f'
   );
   
   
   export const TESTNET_CONFIG = new NetworkConfiguration(
     'testnet',
      Network.DEVNET,
-    '0xe98445b5e7489d1a4afee94940ca4c40e1f6c87a59c3b392e4744614af209de4'
+     '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
+     '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
+     '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f'
   );
 
   export const DEVNET_CONFIG = new NetworkConfiguration(
     'testnet',
      Network.DEVNET,
-    '0xe98445b5e7489d1a4afee94940ca4c40e1f6c87a59c3b392e4744614af209de4'
+    '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
+    '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
+    '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f'
   );
 
   export const CONFIGS = {
