@@ -46,7 +46,7 @@ export class SwapModule implements IModule {
       const new_reserve_in = (reserve_in * BigInt(FEE_SCALE)) + coin_in_val_after_fees;
     
       const amountOut = coin_in_val_after_fees * reserve_out / new_reserve_in;
-      return amountOut
+      return amountOut;
     
     } 
 
