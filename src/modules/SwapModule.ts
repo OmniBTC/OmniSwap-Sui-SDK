@@ -43,7 +43,7 @@ export class SwapModule implements IModule {
       const txn:MoveCallTransaction = {
         packageObjectId:packageObjectId,
         module: 'interface',
-        function: 'multi_add_liquidity',
+        function: 'multi_swap',
         arguments: [globalId,params.coins_in_objectIds,params.coins_in_value,params.coins_out_min],
         typeArguments: [params.coin_x,params.coin_y],
         gasPayment: params.gasPaymentObjectId,
