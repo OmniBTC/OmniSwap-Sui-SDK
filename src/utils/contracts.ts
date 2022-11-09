@@ -1,4 +1,3 @@
-import { FEE_MULTIPLIER, FEE_SCALE } from '../constants'
 const EQUAL = 0;
 const LESS_THAN = 1;
 const GREATER_THAN = 2;
