@@ -16,6 +16,5 @@ export const SUI_COIN_TYPE = "0x2::sui::SUI";
     const token = await sdk.Token.getTokenBalance(address,SUI_COIN_TYPE);
     const balance = token.balance;
     console.log(`balance: ${balance}`)
-  
 
 })();

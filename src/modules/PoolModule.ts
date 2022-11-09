@@ -1,4 +1,4 @@
-import { getObjectId,JsonRpcProvider, getObjectFields } from '@mysten/sui.js';
+import { getObjectId, getObjectFields } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
 import { PoolInfo } from '../types';

@@ -26,7 +26,6 @@ export class TokenModule implements IModule {
       this._sdk = sdk;
     }
 
-    // SUI的balance 是一系列 object 余额相加起来
     // coinTypeArg: "0x2::sui::SUI"
     async getTokenBalance(address:string,coinTypeArg:string) {
         const coinMoveObjects = await this._sdk.jsonRpcProvider.getCoinBalancesOwnedByAddress(address);

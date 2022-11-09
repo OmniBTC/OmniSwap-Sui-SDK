@@ -10,9 +10,9 @@ function cmp(a: number, b: number) {
     } else {
       return GREATER_THAN;
     }
-  }
+}
   
-  function compare(symbolX: string, symbolY: string) {
+function compare(symbolX: string, symbolY: string) {
     const lenCmp = cmp(symbolX.length, symbolY.length);
     if (lenCmp != EQUAL) {
       return lenCmp;
@@ -24,11 +24,12 @@ function cmp(a: number, b: number) {
       i++;
     }
     return EQUAL;
-  }
+}
   
 export function isSortedSymbols(symbolX: string, symbolY: string) {
     return compare(symbolX, symbolY) === LESS_THAN;
 }
+
 export function extractAddressFromType(type: string) {
     return type.split('::')[0];
 }

@@ -51,6 +51,7 @@ export class SwapModule implements IModule {
 
     createSwapTransactionPayload(params: CreateTXPayloadParams):void {
       const { packageObjectId } = this.sdk.networkOptions;
+      
 
     }
 
