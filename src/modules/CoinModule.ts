@@ -27,7 +27,7 @@ export class CoinModule implements IModule {
     }
 
     // coinTypeArg: "0x2::sui::SUI"
-    async getTokenBalance(address:string,coinTypeArg:string) {
+    async getCoinBalance(address:string,coinTypeArg:string) {
         const coinMoveObjects = await this._sdk.jsonRpcProvider.getCoinBalancesOwnedByAddress(address);
         const balanceObjects: CoinInfo[] = [];
         coinMoveObjects.forEach(object => {
