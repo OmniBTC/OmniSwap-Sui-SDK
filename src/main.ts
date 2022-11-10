@@ -1,6 +1,6 @@
 import { SDK } from "./sdk/sdk";
 import { SwapModule,CoinModule,PoolModule,CoinListModule} from "./modules";
-import { NetworkConfiguration } from './config'
+import { NetworkConfiguration,CONFIGS } from './config'
 
 export {
   SDK,
@@ -8,7 +8,8 @@ export {
   CoinModule,
   CoinListModule,
   PoolModule,
-  NetworkConfiguration
+  NetworkConfiguration,
+  CONFIGS
 };
 
 export default SDK;
