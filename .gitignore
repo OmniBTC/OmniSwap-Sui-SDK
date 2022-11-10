@@ -11,4 +11,4 @@ coverage
 jenkinsfileOnProd
 /deploy/
 Dockerfile
-nginx.conf
+nginx.config
