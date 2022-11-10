@@ -21,6 +21,9 @@ const USDT_COIN_TYPE = "0xbf2972612002f472b5bd21394b4417d75c9fe887::usdt::USDT";
     console.log(`amountOut: ${amounOut}`)
     const balance = token.balance;
     console.log(`balance: ${balance}`)
-    const tokenList = await sdk.CoinList.getCoinInfoList();
+    const tokenList = sdk.CoinList.getCoinInfoList();
     console.log(tokenList);
+
+    const tokenInfo = sdk.CoinList.getCoinInfoBySymbol('SUI');
+    console.log(tokenInfo);
 })();
