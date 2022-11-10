@@ -11,8 +11,7 @@
     "ts-node": "ts-node",
     "docs": "typedoc --entryPoints src/main.ts",
     "build": "tsc -p tsconfig.json",
-    "build-all": "yarn clean && yarn build",
-    "start": "ts-node src/index.ts"
+    "build-all": "yarn clean && yarn build"
   },
   "keywords": [],
   "author": "",
