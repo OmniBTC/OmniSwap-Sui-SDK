@@ -9,7 +9,7 @@ pipeline {
     KUBECONFIG_CREDENTIAL_ID = 'admin'
     REGISTRY = 'docker.io'
     DOCKERHUB_NAMESPACE = 'comingweb3'
-    APP_NAME = 'omniSwap-sui-sdk'
+    APP_NAME = 'omniswap-sui-sdk'
   }
   parameters {
     string(name: 'BRANCH_NAME', defaultValue: 'dev', description: '')
