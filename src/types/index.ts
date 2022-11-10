@@ -8,10 +8,10 @@ export type Pool = {
 export type PoolInfo = {
     object_id:string
     global: string,
-    coin_x: bigint,
-    coin_y: bigint,
-    fee_coin_y: bigint,
-    fee_coin_x: bigint,
+    coin_x: number,
+    coin_y: number,
+    fee_coin_y: number,
+    fee_coin_x: number,
     lp_type: string,
     lp_supply: bigint
 };

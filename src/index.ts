@@ -13,12 +13,13 @@ const USDT_COIN_TYPE = "0xbf2972612002f472b5bd21394b4417d75c9fe887::usdt::USDT";
     const poolDetail = await sdk.Pool.getPoolInfo(SUI_COIN_TYPE,USDT_COIN_TYPE);
 
     console.log(poolDetail);
-    const price = await sdk.Pool.getPrice(SUI_COIN_TYPE,USDT_COIN_TYPE,BigInt(1))
+    const price = await sdk.Pool.getPrice(SUI_COIN_TYPE,USDT_COIN_TYPE,1)
     console.log(`price: ${price}`)
 
     const token = await sdk.Coin.getTokenBalance(address,SUI_COIN_TYPE);
-    const amounOut = await sdk.Swap.calculateAmountOut(SUI_COIN_TYPE,USDT_COIN_TYPE,2)
-    console.log(`amountOut: ${amounOut}`)
+    const amounOut = await sdk.Swap.calculateAmountOut('from',SUI_COIN_TYPE,USDT_COIN_TYPE,2)
+    const amounIn = await sdk.Swap.calculateAmountOut('to',SUI_COIN_TYPE,USDT_COIN_TYPE,2000)
+    console.log(`amountOut: ${amounOut} amountIn: ${amounIn}` )
     const balance = token.balance;
     console.log(`balance: ${balance}`)
     const tokenList = sdk.CoinList.getCoinInfoList();

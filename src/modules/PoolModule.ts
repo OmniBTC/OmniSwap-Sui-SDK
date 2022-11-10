@@ -73,10 +73,10 @@ export class PoolModule implements IModule {
         const poolInfo: PoolInfo = {
             object_id: id,
             global: fields?.['global'],
-            coin_x: BigInt(fields?.['coin_x']),
-            coin_y: BigInt(fields?.['coin_y']),
-            fee_coin_x: BigInt(fields?.['fee_coin_x']),
-            fee_coin_y: BigInt(fields?.['fee_coin_y']),
+            coin_x: Number(fields?.['coin_x']),
+            coin_y: Number(fields?.['coin_y']),
+            fee_coin_x: Number(fields?.['fee_coin_x']),
+            fee_coin_y: Number(fields?.['fee_coin_y']),
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
             lp_type: String(lpSupply?.type!),
             lp_supply: lpSupply?.fields['value']
@@ -84,14 +84,14 @@ export class PoolModule implements IModule {
         return Promise.resolve(poolInfo);
    }
 
-   async getPrice(coinXType:string, coinYType: string, coinIn:bigint):Promise<bigint> {
+   async getPrice(coinXType:string, coinYType: string, coinIn: number):Promise<bigint> {
         const poolInfo = await this.getPoolInfo(coinXType, coinYType);
-        const reserveIn = poolInfo.coin_x;
-        const reserveOut = poolInfo.coin_y;
+        const reserveIn = BigInt(poolInfo.coin_x);
+        const reserveOut = BigInt(poolInfo.coin_y);
         //let lpSupply = poolInfo.lpValue;
         const fee_multiplier = FEE_SCALE - FEE_MULTIPLIER;
 
-        const coin_in_val_after_fees = coinIn * BigInt(fee_multiplier);
+        const coin_in_val_after_fees =BigInt(coinIn) * BigInt(fee_multiplier);
         // reserve_in size after adding coin_in (scaled to 1000)
         const new_reserve_in = (reserveIn * BigInt(FEE_SCALE)) + coin_in_val_after_fees;
 

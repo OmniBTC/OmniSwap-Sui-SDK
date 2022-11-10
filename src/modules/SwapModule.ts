@@ -3,7 +3,8 @@
 import { MoveCallTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
-import { FEE_MULTIPLIER, FEE_SCALE } from '../constants'
+import {d} from "../utils/number";
+import Decimal from "decimal.js";
 
 export type CalculateRatesParams = {
   fromToken: string;
@@ -37,25 +38,54 @@ export class SwapModule implements IModule {
       this._sdk = sdk;
     }
 
-    getAmountOut(coin_in: bigint,reserve_in: bigint, reserve_out: bigint) {
-      const fee_multiplier = FEE_SCALE - FEE_MULTIPLIER;
-      const coin_in_after_fee = coin_in - (coin_in* BigInt(FEE_MULTIPLIER))/ BigInt(FEE_SCALE);
+    getCoinOutWithFees(
+      coinInVal: Decimal.Instance,
+      reserveInSize: Decimal.Instance,
+      reserveOutSize: Decimal.Instance
+    ) {
+      const { feePct, feeScale } = { feePct: d(3), feeScale: d(1000) };
+      const feeMultiplier = feeScale.sub(feePct);
+      const coinInAfterFees = coinInVal.mul(feeMultiplier);
+      const newReservesInSize = reserveInSize.mul(feeScale).plus(coinInAfterFees);
     
-      const coin_in_val_after_fees = coin_in_after_fee  * BigInt(fee_multiplier);
-    
-      const new_reserve_in = (reserve_in * BigInt(FEE_SCALE)) + coin_in_val_after_fees;
-    
-      const amountOut = coin_in_val_after_fees * reserve_out / new_reserve_in;
-      return amountOut;
+      return coinInAfterFees.mul(reserveOutSize).div(newReservesInSize).toDP(0);
+    }
+
+    getCoinInWithFee(coinOutVal: Decimal.Instance,
+      reserveOutSize: Decimal.Instance,
+      reserveInSize: Decimal.Instance) {
+      const { feePct, feeScale } = { feePct: d(3), feeScale: d(1000) };
+      const feeMultiplier = feeScale.sub(feePct);
+      const newReservesOutSize = reserveOutSize.sub(coinOutVal).mul(feeMultiplier);
+
+      return coinOutVal.mul(feeScale).mul(reserveInSize).div(newReservesOutSize).plus(1).toDP(0);
     
     } 
 
-    async calculateAmountOut(coin_x:string,coin_y:string,coin_in_value:number) {
+
+    async calculateAmountOut(interactiveToken: string,coin_x:string,coin_y:string,coin_in_value:number) {
+
+      const fromCoinInfo = this.sdk.CoinList.getCoinInfoByType(coin_x);
+      const toCoinInfo = this.sdk.CoinList.getCoinInfoByType(coin_y);
+      if (!fromCoinInfo) {
+        throw new Error('From Coin not exists');
+      } 
+      if (!toCoinInfo) {
+        throw new Error('To Coin not exits');
+      }
       const pool = await this.sdk.Pool.getPoolInfo(coin_x, coin_y);
       const coin_x_reserve = pool.coin_x;
       const coin_y_reserce = pool.coin_y;
-      const coin_x_in = BigInt(coin_in_value);
-      const amoutOut = this.getAmountOut(coin_x_in,coin_x_reserve,coin_y_reserce);
+
+      const [reserveX, reserveY] = 
+        interactiveToken === 'from' ? [coin_x_reserve,coin_y_reserce] : [coin_y_reserce,coin_x_reserve];
+
+      const coin_x_in = d(coin_in_value);
+
+      const amoutOut = 
+         interactiveToken === 'from' ? this.getCoinOutWithFees(d(coin_x_in),d(reserveX),d(reserveY)) 
+         : this.getCoinInWithFee(coin_x_in,d(reserveX),d(reserveY));
+      
       return amoutOut;
     } 
 
@@ -75,3 +105,6 @@ export class SwapModule implements IModule {
     } 
  }
  
+ export function withSlippage(value: Decimal.Instance, slippage: Decimal.Instance, mode: 'plus' | 'minus') {
+  return d(value)[mode](d(value).mul(slippage)).toDP(0);
+}
