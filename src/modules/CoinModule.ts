@@ -1,4 +1,4 @@
-import { getObjectId, Coin,MoveCallTransaction } from '@mysten/sui.js';
+import { getObjectId, Coin,MoveCallTransaction,SplitCoinTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
 
@@ -13,7 +13,7 @@ export interface CoinInfo {
 export interface CoinObjects {
     balance: bigint,
     objects: CoinInfo[]
-}
+} 
 
 export class CoinModule implements IModule {
     protected _sdk: SDK;
@@ -70,6 +70,14 @@ export class CoinModule implements IModule {
             gasBudget: 10000,
         }
         return txn;
+    }
+
+    async buildSpiltTransaction(signerAddress: string, splitTxn:SplitCoinTransaction) {
+        const serializer = await this._sdk.serializer.newSplitCoin(
+            signerAddress,
+            splitTxn
+        );
+        return serializer.getData();
     }
  }
  
