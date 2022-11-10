@@ -22,9 +22,9 @@ export class NetworkConfiguration {
   export const TESTNET_CONFIG = new NetworkConfiguration(
     'testnet',
      Network.DEVNET,
-    '0x6b2b8d00733280d641a506e3865de71a0e9398e9',
-    '0xa65f9fb71b9989c7bb530c2c077e5decc7fe1d9d',
-    '0xb445efd1984827519c9d9666815b6f93256f16c4'
+    '0x2918d7520ca9783a3ce34649c11631337e5a69a3',
+    '0x10638d1453b122aacdcd06ddb4bb5839d0869aa5',
+    '0xc5436198558e515e7fe5adc45084591cef140c31'
   );
 
   export const CONFIGS = {

@@ -4,11 +4,8 @@ import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
 import { Pool,PoolInfo } from '../types';
 import { checkPairValid } from '../utils/contracts'
-
-/// Current fee is 0.3%
-const FEE_MULTIPLIER = 30;
-    /// The integer scaling setting for fees calculation.
-const FEE_SCALE = 10000;
+import {d} from "../utils/number";
+import Decimal from "decimal.js";
 
 export type CreateAddLiquidTXPayloadParams = {
   coin_x: string;
@@ -84,20 +81,46 @@ export class PoolModule implements IModule {
         return Promise.resolve(poolInfo);
    }
 
-   async getPrice(coinXType:string, coinYType: string, coinIn: number):Promise<bigint> {
-        const poolInfo = await this.getPoolInfo(coinXType, coinYType);
-        const reserveIn = BigInt(poolInfo.coin_x);
-        const reserveOut = BigInt(poolInfo.coin_y);
-        //let lpSupply = poolInfo.lpValue;
-        const fee_multiplier = FEE_SCALE - FEE_MULTIPLIER;
+   getCoinOut(
+    coinInVal: Decimal.Instance,
+    reserveInSize: Decimal.Instance,
+    reserveOutSize: Decimal.Instance
+  ) {
+    return coinInVal.mul(reserveInSize).div(reserveOutSize).toDP(0);
+  }
 
-        const coin_in_val_after_fees =BigInt(coinIn) * BigInt(fee_multiplier);
-        // reserve_in size after adding coin_in (scaled to 1000)
-        const new_reserve_in = (reserveIn * BigInt(FEE_SCALE)) + coin_in_val_after_fees;
+  getCoinIn(
+      coinOutVal: Decimal.Instance,
+      reserveOutSize: Decimal.Instance,
+      reserveInSize: Decimal.Instance
+  ) {
+    return coinOutVal.mul(reserveOutSize).div(reserveInSize).toDP(0);
+  }
 
-        const amounOut = coin_in_val_after_fees * reserveOut / new_reserve_in;
-        return Promise.resolve(amounOut);
-   }
+  async calculateRate(interactiveToken: string,coin_x:string,coin_y:string,coin_in_value:number) {
+    const fromCoinInfo = this.sdk.CoinList.getCoinInfoByType(coin_x);
+    const toCoinInfo = this.sdk.CoinList.getCoinInfoByType(coin_y);
+    if (!fromCoinInfo) {
+      throw new Error('From Coin not exists');
+    } 
+    if (!toCoinInfo) {
+      throw new Error('To Coin not exits');
+    }
+    const pool = await this.sdk.Pool.getPoolInfo(coin_x, coin_y);
+    const coin_x_reserve = pool.coin_x;
+    const coin_y_reserce = pool.coin_y;
+
+    const [reserveX, reserveY] = 
+      interactiveToken === 'from' ? [coin_x_reserve,coin_y_reserce] : [coin_y_reserce,coin_x_reserve];
+
+    const coin_x_in = d(coin_in_value);
+
+    const amoutOut = 
+       interactiveToken === 'from' ? this.getCoinOut(d(coin_x_in),d(reserveX),d(reserveY)) 
+       : this.getCoinIn(coin_x_in,d(reserveX),d(reserveY));
+    
+    return amoutOut;
+  } 
 
   buildAddLiquidTransAction(params: CreateAddLiquidTXPayloadParams): MoveCallTransaction{
      const {  packageObjectId,globalId } = this.sdk.networkOptions;

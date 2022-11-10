@@ -3,7 +3,7 @@ import { SDK } from './sdk/sdk';
 import { TESTNET_CONFIG } from './config/configuration';
 //import { CreateSwapTXPayloadParams } from './modules';
 const SUI_COIN_TYPE = "0x2::sui::SUI";
-const USDT_COIN_TYPE = "0xbf2972612002f472b5bd21394b4417d75c9fe887::usdt::USDT";
+const USDT_COIN_TYPE = "0x6674cb08a6ef2a155b3c341a8697572898f0e4d1::usdt::USDT";
 
 (async function main() {
     const address = '0x09761aebdb103269c42265cc0aa646620234e7c8';
@@ -13,12 +13,13 @@ const USDT_COIN_TYPE = "0xbf2972612002f472b5bd21394b4417d75c9fe887::usdt::USDT";
     const poolDetail = await sdk.Pool.getPoolInfo(SUI_COIN_TYPE,USDT_COIN_TYPE);
 
     console.log(poolDetail);
-    const price = await sdk.Pool.getPrice(SUI_COIN_TYPE,USDT_COIN_TYPE,1)
-    console.log(`price: ${price}`)
+    const liquidFrom = await sdk.Pool.calculateRate('from',SUI_COIN_TYPE,USDT_COIN_TYPE,1)
+    const liquidTo = await sdk.Pool.calculateRate('to',SUI_COIN_TYPE,USDT_COIN_TYPE,1)
+    console.log(`liquidFrom: ${liquidFrom} liquidTo: ${liquidTo}`)
 
     const token = await sdk.Coin.getTokenBalance(address,SUI_COIN_TYPE);
-    const amounOut = await sdk.Swap.calculateAmountOut('from',SUI_COIN_TYPE,USDT_COIN_TYPE,2)
-    const amounIn = await sdk.Swap.calculateAmountOut('to',SUI_COIN_TYPE,USDT_COIN_TYPE,2000)
+    const amounOut = await sdk.Swap.calculateRate('from',SUI_COIN_TYPE,USDT_COIN_TYPE,2)
+    const amounIn = await sdk.Swap.calculateRate('to',SUI_COIN_TYPE,USDT_COIN_TYPE,2000)
     console.log(`amountOut: ${amounOut} amountIn: ${amounIn}` )
     const balance = token.balance;
     console.log(`balance: ${balance}`)

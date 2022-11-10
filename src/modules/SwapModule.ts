@@ -62,9 +62,7 @@ export class SwapModule implements IModule {
     
     } 
 
-
-    async calculateAmountOut(interactiveToken: string,coin_x:string,coin_y:string,coin_in_value:number) {
-
+    async calculateRate(interactiveToken: string,coin_x:string,coin_y:string,coin_in_value:number) {
       const fromCoinInfo = this.sdk.CoinList.getCoinInfoByType(coin_x);
       const toCoinInfo = this.sdk.CoinList.getCoinInfoByType(coin_y);
       if (!fromCoinInfo) {

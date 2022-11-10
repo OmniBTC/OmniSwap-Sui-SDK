@@ -71,8 +71,8 @@ export const REQUESTS_TESTNET: RawCoinInfo[] = [
       "logo_url": "https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/USDT.svg",
       "project_url": "",
       "token_type": {
-        "type": "0xbf2972612002f472b5bd21394b4417d75c9fe887::usdt::USDT",
-        "account_address": "0xbf2972612002f472b5bd21394b4417d75c9fe887",
+        "type": "0x6674cb08a6ef2a155b3c341a8697572898f0e4d1::usdt::USDT",
+        "account_address": "0x6674cb08a6ef2a155b3c341a8697572898f0e4d1",
         "module_name": "usdt",
         "struct_name": "USDT"
       },
@@ -90,8 +90,8 @@ export const REQUESTS_TESTNET: RawCoinInfo[] = [
       "logo_url": "https://coming-website.s3.us-east-2.amazonaws.com/icon_xbtc_30.png",
       "project_url": "https://github.com/OmniBTC/OmniBridge",
       "token_type": {
-        "type": "0xbf2972612002f472b5bd21394b4417d75c9fe887::xbtc::XBTC",
-        "account_address": "0xbf2972612002f472b5bd21394b4417d75c9fe887",
+        "type": "0x6674cb08a6ef2a155b3c341a8697572898f0e4d1::xbtc::XBTC",
+        "account_address": "0x6674cb08a6ef2a155b3c341a8697572898f0e4d1",
         "module_name": "xbtc",
         "struct_name": "XBTC"
       },
