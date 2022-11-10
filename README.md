@@ -1,6 +1,9 @@
 ## OmniSwap-Sui-SDK
 The typescript SDK for [Sui-AMM-swap](https://github.com/OmniBTC/Sui-AMM-swap)
 
+## Docs
+[OmniSwap Sui SDK docs](docs-omniswap-sui.omnibtc.finance)
+
 ## Usage
 
 ### Install
@@ -12,9 +15,6 @@ yarn add @omnibtc/omniswap-sui-sdk
 ```bash
 yarn test
 ```
-
-### Docs
-[OmniSwap Sui SDK docs](docs-omniswap-sui.omnibtc.finance)
 
 ### Init SDK
 
