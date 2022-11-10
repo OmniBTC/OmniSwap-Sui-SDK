@@ -34,10 +34,14 @@ export class CoinModule implements IModule {
             if (!Coin.isCoin(object)) {
                 return;
             }
+            if (coinTypeArg != Coin.getCoinTypeArg(object)) {
+                return;
+            }
             const coinObjectId = getObjectId(object);
             const balance = Coin.getBalance(object)
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             const coinSymbol = Coin.getCoinSymbol(coinTypeArg!);
+            
             balanceObjects.push({
                 id: coinObjectId,
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

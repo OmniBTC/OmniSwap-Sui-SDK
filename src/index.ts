@@ -6,7 +6,7 @@ const SUI_COIN_TYPE = "0x2::sui::SUI";
 const USDT_COIN_TYPE = "0xbf2972612002f472b5bd21394b4417d75c9fe887::usdt::USDT";
 
 (async function main() {
-    const address = '0x036e2406b8cf1fc4541ed6d0e252c77b094d0fd9';
+    const address = '0x09761aebdb103269c42265cc0aa646620234e7c8';
 
     const sdk = new SDK(TESTNET_CONFIG);
 
