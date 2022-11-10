@@ -17,3 +17,6 @@ package-lock.json
 /tmp*
 /mnt/
 /package/
+jenkinsfileOnProd
+/deploy/
+Dockerfile
