@@ -12,20 +12,20 @@ pipeline {
     APP_NAME = 'omniswap-sui-sdk'
   }
   parameters {
-    string(name: 'BRANCH_NAME', defaultValue: 'dev', description: '')
+    string(name: 'BRANCH_NAME', defaultValue: 'feautre/docs-deploy', description: '')
   }
 
 
   stages {
 
-    stage('拉取代码') {
+    stage('pull') {
       steps {
-        git(branch: 'dev', url: 'https://github.com/OmniBTC/OmniSwap-Sui-SDK', credentialsId: 'github-id', changelog: true, poll: false)
+        git(branch: 'feautre/docs-deploy', url: 'https://github.com/OmniBTC/OmniSwap-Sui-SDK', credentialsId: 'github-id', changelog: true, poll: false)
       }
     }
 
 
-    stage('推送镜像') {
+    stage('build image') {
       steps {
         container('base') {
           withCredentials([usernamePassword(credentialsId : "$DOCKER_CREDENTIAL_ID" ,passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,)]) {
@@ -39,7 +39,7 @@ pipeline {
       }
     }
 
-    stage('部署') {
+    stage('deploy') {
       steps {
         container('base') {
           script {
