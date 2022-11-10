@@ -20,4 +20,4 @@ ENV REACT_APP_API_ENV=prod
 CMD ["/bin/sh", "-c", "envsubst < /etc/nginx/nginx.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
 
 # 将build后的产物移动到nginx
-COPY --from=builder /opt/web/docs /usr/share/nginx/html
+COPY --from=builder /opt/web/docs/ /usr/share/nginx/html
