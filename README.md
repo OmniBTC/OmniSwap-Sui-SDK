@@ -34,14 +34,14 @@ const USDT_COIN_TYPE = "0xbf2972612002f472b5bd21394b4417d75c9fe887::usdt::USDT";
 
 ### CoinList
 
-get coin list:
-```
+```ts
 ...
+//get coin list:
 const tokenList =  sdk.CoinList.getCoinInfoList();
 console.log(tokenList);
 ```
-get coin info:
-```
+```ts
+//get coin info:
 const tokenInfo = sdk.CoinList.getCoinInfoBySymbol('SUI');
 console.log(tokenInfo);
 ```
