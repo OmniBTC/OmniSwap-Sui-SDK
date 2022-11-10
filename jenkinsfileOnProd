@@ -1,0 +1,65 @@
+pipeline {
+  agent {
+    node {
+      label 'base'
+    }
+  }
+  environment {
+    DOCKER_CREDENTIAL_ID = 'dockerhub-id'
+    KUBECONFIG_CREDENTIAL_ID = 'admin'
+    REGISTRY = 'docker.io'
+    DOCKERHUB_NAMESPACE = 'comingweb3'
+    APP_NAME = 'omniSwap-sui-sdk'
+  }
+  parameters {
+    string(name: 'BRANCH_NAME', defaultValue: 'main', description: '')
+  }
+
+
+  stages {
+
+    stage('拉取代码') {
+      steps {
+        git(branch: 'main', url: 'https://github.com/OmniBTC/OmniSwap-Sui-SDK', credentialsId: 'github-id', changelog: true, poll: false)
+      }
+    }
+
+
+    stage('推送镜像') {
+      steps {
+        container('base') {
+          withCredentials([usernamePassword(credentialsId : "$DOCKER_CREDENTIAL_ID" ,passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,)]) {
+            sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
+            sh 'docker build --network host -f Dockerfile -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:$BUILD_NUMBER .'
+            sh 'docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:$BUILD_NUMBER'
+          }
+
+        }
+
+      }
+    }
+
+    stage('部署') {
+      steps {
+        container('base') {
+          script {
+            withCredentials([
+              kubeconfigFile(
+                credentialsId: 'admin',
+                variable: 'KUBECONFIG')
+              ])
+              {
+                sh 'envsubst <  deploy/deploy-sdk-docs.yaml | kubectl apply -f -'
+
+              }
+            }
+
+        }
+
+      }
+
+    }
+
+  }
+}
+  
