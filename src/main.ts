@@ -1,11 +1,12 @@
 import { SDK } from "./sdk/sdk";
-import { SwapModule,TokenModule,PoolModule } from "./modules";
+import { SwapModule,CoinModule,PoolModule,CoinListModule} from "./modules";
 import { NetworkConfiguration } from './config'
 
 export {
   SDK,
   SwapModule,
-  TokenModule,
+  CoinModule,
+  CoinListModule,
   PoolModule,
   NetworkConfiguration
 };
