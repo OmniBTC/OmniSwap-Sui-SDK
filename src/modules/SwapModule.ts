@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { MoveCallTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
-import { SDK } from '../sdk/sdk';
+import { SDK } from '../sdk';
 import { FEE_MULTIPLIER, FEE_SCALE } from '../constants'
 
 export type CalculateRatesParams = {

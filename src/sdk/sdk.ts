@@ -1,6 +1,6 @@
 import { JsonRpcProvider, RpcTxnDataSerializer, TxnDataSerializer} from '@mysten/sui.js';
 import { NetworkConfiguration } from '../config/configuration';
-import { SwapModule,TokenModule,PoolModule } from '../modules';
+import { SwapModule,CoinModule,PoolModule, CoinListModule } from '../modules';
 
 export class SDK {
     protected _jsonRpcProvider: JsonRpcProvider;
@@ -8,7 +8,8 @@ export class SDK {
     protected _serializer: TxnDataSerializer;
     protected _swap:SwapModule;
     protected _pool:PoolModule;
-    protected _token:TokenModule;
+    protected _token:CoinModule;
+    protected _coinList: CoinListModule;
     
     get jsonRpcProvider() {
         return this._jsonRpcProvider;
@@ -22,8 +23,12 @@ export class SDK {
         return this._pool;
     }
 
-    get Token() {
+    get Coin() {
         return this._token;
+    }
+
+    get CoinList() {
+        return this._coinList;
     }
 
     get networkOptions() {
@@ -41,7 +46,8 @@ export class SDK {
             this._jsonRpcProvider.options.skipDataValidation!)
         this._networkConfiguration = networkConfiguration;
         this._swap = new SwapModule(this);
-        this._token = new TokenModule(this);
+        this._token = new CoinModule(this);
         this._pool = new PoolModule(this);
+        this._coinList = new CoinListModule(this);
     }
 }

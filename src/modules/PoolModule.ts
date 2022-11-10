@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { getObjectId, getObjectFields, MoveCallTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
-import { SDK } from '../sdk/sdk';
+import { SDK } from '../sdk';
 import { Pool,PoolInfo } from '../types';
 
 /// Current fee is 0.3%

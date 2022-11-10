@@ -1,6 +1,6 @@
 import { getObjectId, Coin } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
-import { SDK } from '../sdk/sdk';
+import { SDK } from '../sdk';
 
 export const SUI_COIN_TYPE = "0x2::sui::SUI";
 
@@ -15,7 +15,7 @@ export interface CoinObjects {
     objects: CoinInfo[]
 }
 
-export class TokenModule implements IModule {
+export class CoinModule implements IModule {
     protected _sdk: SDK;
     
     get sdk() {

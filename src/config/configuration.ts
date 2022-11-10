@@ -11,24 +11,15 @@ export class NetworkConfiguration {
     ) {}
   }
   
-  // export const MAINNET_CONFIG = new NetworkConfiguration(
-  //   'mainnet',
-  //    Network.DEVNET,
-  //   '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
-  //   '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
-  //   '0x19465f7b8008aa1443269808840856a3c8b2c119'
-  // );
+  export const MAINNET_CONFIG = new NetworkConfiguration(
+    'mainnet',
+     Network.DEVNET,
+    '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
+    '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
+    '0x19465f7b8008aa1443269808840856a3c8b2c119'
+  );
   
-  
-  // export const TESTNET_CONFIG = new NetworkConfiguration(
-  //   'testnet',
-  //    Network.DEVNET,
-  //    '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
-  //    '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
-  //    '0x19465f7b8008aa1443269808840856a3c8b2c119'
-  // );
-
-  export const DEVNET_CONFIG = new NetworkConfiguration(
+  export const TESTNET_CONFIG = new NetworkConfiguration(
     'testnet',
      Network.DEVNET,
     '0x6b2b8d00733280d641a506e3865de71a0e9398e9',
@@ -37,8 +28,7 @@ export class NetworkConfiguration {
   );
 
   export const CONFIGS = {
-    // mainnet: MAINNET_CONFIG,
-    //testnet: TESTNET_CONFIG,
-    devnet: DEVNET_CONFIG
+    mainnet: MAINNET_CONFIG,
+    testnet: TESTNET_CONFIG
   };
   

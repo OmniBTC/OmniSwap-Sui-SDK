@@ -1,3 +1,4 @@
 export * from './PoolModule';
 export * from './SwapModule';
-export * from './TokenModule';
+export * from './CoinModule';
+export * from './CoinListModule';
