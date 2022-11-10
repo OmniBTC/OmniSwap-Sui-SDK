@@ -20,3 +20,4 @@ package-lock.json
 jenkinsfileOnProd
 /deploy/
 Dockerfile
+nginx.conf
