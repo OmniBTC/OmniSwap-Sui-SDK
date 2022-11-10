@@ -8,3 +8,6 @@
 coverage
 *.log
 /examples/
+Dockerfile
+/deploy/
+nginx.config

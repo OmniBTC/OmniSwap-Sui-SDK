@@ -49,7 +49,9 @@ export class CoinModule implements IModule {
                 coinSymbol: coinSymbol
             })
         })
-        const balanceSum = Coin.totalBalance(coinMoveObjects)
+        const balanceSum:number = balanceObjects.reduce((pre,cur)=> {
+           return  Number(cur.balance) + pre
+        },0)
         return {
             balance: balanceSum,
             objects: balanceObjects
