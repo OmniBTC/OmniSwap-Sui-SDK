@@ -2,7 +2,7 @@
 The typescript SDK for [Sui-AMM-swap](https://github.com/OmniBTC/Sui-AMM-swap)
 
 ## Docs
-[OmniSwap Sui SDK docs](docs-omniswap-sui.omnibtc.finance)
+[OmniSwap Sui SDK docs](https://docs-omniswap-sui.omnibtc.finance)
 
 ## Usage
 
