@@ -14,15 +14,15 @@ export class CoinListModule implements IModule {
       this.coinList = sdk.networkOptions.isMainNet ? REQUESTS_MAINNET: REQUESTS_TESTNET;
       this.fullnameToCoinInfo = {};
       this.symbolToCoinInfo = {};
-      this.typeToCoinInfo = {}
+      this.typeToCoinInfo = {};
+      this.buildCache();
     }
 
     get sdk() {
       return this._sdk;
     }
 
-    async buildCache() {
-     
+    private buildCache() {
       for (const tokenInfo of this.coinList) {
         this.symbolToCoinInfo[tokenInfo.symbol] = tokenInfo;
         this.typeToCoinInfo[tokenInfo.token_type.type] = tokenInfo;

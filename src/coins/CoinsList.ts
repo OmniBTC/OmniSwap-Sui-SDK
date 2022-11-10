@@ -108,10 +108,10 @@ export const REQUESTS_TESTNET: RawCoinInfo[] = [
       "logo_url": "https://raw.githubusercontent.com/MystenLabs/sui/main/apps/wallet/src/ui/assets/images/sui-icon.png",
       "project_url": "http://sui.io/",
       "token_type": {
-        "type": "0x1::aptos_coin::AptosCoin",
-        "account_address": "0x1",
-        "module_name": "aptos_coin",
-        "struct_name": "AptosCoin"
+        "type": "0x2::sui::SUI",
+        "account_address": "0x2",
+        "module_name": "sui",
+        "struct_name": "SUI"
       },
       "extensions": {
         "data": []
