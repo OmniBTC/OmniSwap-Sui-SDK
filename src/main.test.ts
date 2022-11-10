@@ -35,7 +35,7 @@ describe('Swap Module',()=>{
         const fromRate = await sdk.Swap.calculateRate('from',SUI_COIN_TYPE,USDT_COIN_TYPE,1);
         console.log(`from rate: ${fromRate}`);
         console.log('----------------------------------------------------');
-        const toRate = await sdk.Swap.calculateRate('to',SUI_COIN_TYPE,USDT_COIN_TYPE,Math.pow(10,9));
+        const toRate = await sdk.Swap.calculateRate('to',SUI_COIN_TYPE,USDT_COIN_TYPE,Math.pow(10,6));
         console.log(`to rate: ${toRate}`);
         expect(1).toBe(1)
     })

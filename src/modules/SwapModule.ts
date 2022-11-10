@@ -60,7 +60,7 @@ export class SwapModule implements IModule {
         const feeMultiplier = feeScale.sub(feePct);
         const newReservesOutSize = (reserveOutSize.minus(coinOutVal)).mul(feeMultiplier);
       
-        return coinOutVal.mul(feeScale).mul(reserveInSize).div(newReservesOutSize).plus(1).abs();
+        return coinOutVal.mul(feeScale).mul(reserveInSize).div(newReservesOutSize).toDP(0).abs();
     
     } 
 
