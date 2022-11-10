@@ -80,7 +80,7 @@ metadata:
   namespace: front-prod
 spec:
   ports:
-    - port: 3000
+    - port: 80
       name: http-main
   selector:
     app: $APP_NAME
@@ -89,14 +89,14 @@ spec:
 kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: omniswap-sui-sdk.omnibtc.finance
+  name: docs-omniswap-sui.omnibtc.finance
   namespace: front-prod
   annotations:
     external-dns.alpha.kubernetes.io/target: a5d156c18cea5820c.awsglobalaccelerator.com
 
 spec:
   rules:
-    - host: omniswap-sui-sdk.omnibtc.finance
+    - host: docs-omniswap-sui.omnibtc.finance
       http:
         paths:
           - path: /
@@ -105,4 +105,4 @@ spec:
               service:
                 name: $APP_NAME
                 port:
-                  number: 3000
+                  number: 80
