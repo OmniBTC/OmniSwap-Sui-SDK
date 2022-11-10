@@ -3,6 +3,7 @@ import { getObjectId, getObjectFields, MoveCallTransaction } from '@mysten/sui.j
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
 import { Pool,PoolInfo } from '../types';
+import { checkPairValid } from '../utils/contracts'
 
 /// Current fee is 0.3%
 const FEE_MULTIPLIER = 30;
@@ -50,8 +51,15 @@ export class PoolModule implements IModule {
 
    async getPoolInfo(coinXType:string, coinYType: string): Promise<PoolInfo> {
         const poolList:Pool[] = await this.getPoolList();
+        if (!checkPairValid(coinXType,coinYType)) {
+          Promise.reject('Invalid Pair');
+        }
+        if (!this.sdk.CoinList.getCoinInfoByType(coinXType) || !this.sdk.CoinList.getCoinInfoByType(coinYType)) {
+          Promise.reject('Coin Not In Offical Coin List')
+        }
+
         const pool:Pool | undefined = poolList.find(pool => {
-          return pool.pool_type.includes(coinXType) && pool.pool_type.includes(coinYType);
+            return pool.pool_type.includes(coinXType) && pool.pool_type.includes(coinYType);
         })
         
         const moveObject = await this._sdk.jsonRpcProvider.getObject(pool!.pool_addr);

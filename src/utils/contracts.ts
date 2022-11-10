@@ -33,3 +33,15 @@ export function isSortedSymbols(symbolX: string, symbolY: string) {
 export function extractAddressFromType(type: string) {
     return type.split('::')[0];
 }
+
+export function checkPairValid(coinX:string, coinY:string) {
+  if (!coinX || !coinY) {
+    return false;
+  }
+  if (coinX == coinY) {
+    return false;
+  }
+
+  return true;
+
+}
