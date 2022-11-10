@@ -1,4 +1,4 @@
-import { getObjectId, Coin,MoveCallTransaction,SplitCoinTransaction } from '@mysten/sui.js';
+import { getObjectId, Coin,MoveCallTransaction,SplitCoinTransaction,MergeCoinTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
 
@@ -76,6 +76,14 @@ export class CoinModule implements IModule {
         const serializer = await this._sdk.serializer.newSplitCoin(
             signerAddress,
             splitTxn
+        );
+        return serializer.getData();
+    }
+
+    async buildMergeTransaction(signerAddress: string, mergeTxn:MergeCoinTransaction) {
+        const serializer = await this._sdk.serializer.newMergeCoin(
+            signerAddress,
+            mergeTxn
         );
         return serializer.getData();
     }
