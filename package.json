@@ -10,8 +10,7 @@
     "clean": "rm -rf dist build package",
     "ts-node": "ts-node",
     "docs": "typedoc --entryPoints src/main.ts",
-    "build": "tsc -p tsconfig.json",
-    "build-all": "yarn clean && yarn build"
+    "build": "tsc -p tsconfig.json"
   },
   "keywords": [],
   "author": "",
