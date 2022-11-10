@@ -1,4 +1,4 @@
-import { getObjectId, Coin } from '@mysten/sui.js';
+import { getObjectId, Coin,MoveCallTransaction } from '@mysten/sui.js';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
 
@@ -54,6 +54,20 @@ export class CoinModule implements IModule {
             balance: balanceSum,
             objects: balanceObjects
         }
+    }
+
+    async buildFaucetTransaction(coinTypeArg: string) {
+        const faucetPackageId = "0x6674cb08a6ef2a155b3c341a8697572898f0e4d1";
+        const faucetObjectId = "0xa1edadeb50fc367837b6d37f361d6f7ee4688fdb";
+        const txn:MoveCallTransaction = {
+            packageObjectId: faucetPackageId,
+            module: 'faucet',
+            function: 'claim',
+            arguments: [faucetObjectId],
+            typeArguments: [coinTypeArg],
+            gasBudget: 10000,
+        }
+        return txn;
     }
  }
  

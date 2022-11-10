@@ -18,6 +18,13 @@ export type CreateAddLiquidTXPayloadParams = {
   slippage: number;
 }
 
+export type CreateRemoveLiquidTXPayloadParams = {
+  coin_x: string;
+  coin_y: string;
+  lp_coin_objectIds: string[],
+  gasPaymentObjectId: string;
+}
+
 export class PoolModule implements IModule {
 
    protected _sdk: SDK;
@@ -137,4 +144,19 @@ export class PoolModule implements IModule {
      }
      return txn;
    } 
+  
+   buildRemoveLiquidTransAction(params: CreateRemoveLiquidTXPayloadParams): MoveCallTransaction{
+    const { packageObjectId,globalId } = this.sdk.networkOptions;
+
+    const txn:MoveCallTransaction = {
+      packageObjectId:packageObjectId,
+      module: 'interface',
+      function: 'multi_remove_liquidity',
+      arguments: [globalId,params.lp_coin_objectIds],
+      typeArguments: [params.coin_x,params.coin_y],
+      gasPayment: params.gasPaymentObjectId,
+      gasBudget: 10000,
+    }
+    return txn;
+  } 
 }
