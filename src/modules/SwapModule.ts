@@ -51,14 +51,16 @@ export class SwapModule implements IModule {
       return coinInAfterFees.mul(reserveOutSize).div(newReservesInSize).toDP(0);
     }
 
-    getCoinInWithFee(coinOutVal: Decimal.Instance,
+    getCoinInWithFee(
+      coinOutVal: Decimal.Instance,
       reserveOutSize: Decimal.Instance,
-      reserveInSize: Decimal.Instance) {
-      const { feePct, feeScale } = { feePct: d(3), feeScale: d(1000) };
-      const feeMultiplier = feeScale.sub(feePct);
-      const newReservesOutSize = reserveOutSize.sub(coinOutVal).mul(feeMultiplier);
-
-      return coinOutVal.mul(feeScale).mul(reserveInSize).div(newReservesOutSize).plus(1).toDP(0);
+      reserveInSize: Decimal.Instance
+      ) {
+        const { feePct, feeScale } = { feePct: d(3), feeScale: d(1000) };
+        const feeMultiplier = feeScale.sub(feePct);
+        const newReservesOutSize = (reserveOutSize.minus(coinOutVal)).mul(feeMultiplier);
+      
+        return coinOutVal.mul(feeScale).mul(reserveInSize).div(newReservesOutSize).plus(1).abs();
     
     } 
 
