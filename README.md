@@ -7,6 +7,8 @@ The typescript SDK for [Sui-AMM-swap](https://github.com/OmniBTC/Sui-AMM-swap)
 ```bash
 yarn add @omnibtc/omniswap-sui-sdk
 ```
+### Docs
+[OmniSwap Sui SDK docs](docs-omniswap-sui.omnibtc.finance)
 
 ### Init SDK
 
