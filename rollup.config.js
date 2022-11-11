@@ -1,17 +1,21 @@
-// rollup.config.js
 import typescript from '@rollup/plugin-typescript';
 
 var rollup_config = [
   {
-    input: 'src/cli/index.ts',
+    input: 'src/main.ts',
     output: [
       {
-        file: './cli/index.js',
+        file: './dist/main.js',
         format: 'cjs',
+        sourcemap: true
+      },
+      {
+        file: './dist/main.mjs',
+        format: 'es',
         sourcemap: true
       }
     ],
-    external: ['@mysten/sui.js', 'commander', 'fs', 'yaml', 'big-integer','decimal.js'],
+    external: ['@mysten/sui.js', 'commander', 'fs', 'yaml', 'decimal.js'],
     plugins: [typescript()]
   }
 ];
