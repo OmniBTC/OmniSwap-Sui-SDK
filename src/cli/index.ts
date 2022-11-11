@@ -10,24 +10,34 @@ const sdk = new SDK(CONFIGS.testnet);
 program
   .name('yarn cli')
   .description('OmniSwap Sui TS CLI')
-  .requiredOption('-c, --config <path>', 'path to your sui config.yml (generated with "sui client active-address")')
+  .option('-c, --config <path>', 'path to your sui config.yml (generated with "sui client active-address")')
   .option('-p, --profile <PROFILE>', 'sui config profile to use', 'default');
 
-const walletFaucet = async () => {
+const wallet= async () => {
    const { keypair } = readConfig(program);
    const ed25519PublicKey =  new  Ed25519PublicKey(keypair.getPublicKey())
    const address = addHexPrefix(ed25519PublicKey.toSuiAddress())
    console.log(address)
-   // eslint-disable-next-line no-constant-condition
-   while (true) {
-    await sdk.Coin.faucetSui(address)    
-   }
-
 };
   
 program.command('omniswap:wallet')
-  .description('print wallet and faucet tokens')
-  .action(walletFaucet)
+  .description('print wallet ')
+  .action(wallet)
 
+const facuet= async (address:string) => {
+    console.log(address)
+    let i = 0;
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      i++;
+      console.log('faucet sui token ', i)
+     await sdk.Coin.faucetSui(address)    
+    }
+};
 
-  program.parse();
+program.command('omniswap:faucet')
+ .description('faucet sui')
+ .argument('address')
+ .action(facuet)
+
+program.parse();
