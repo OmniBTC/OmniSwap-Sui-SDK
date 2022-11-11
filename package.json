@@ -28,7 +28,7 @@
     "build-ts": "tsc -p tsconfig.json",
     "build": "rm -rf dist; rollup -c rollup.config.js",
     "build-cli": "rm -rf dist; rollup -c rollup.config.cli.js",
-    "cli": "node cli/index.js"
+    "cli": "yarn build-cli; node cli/index.js"
   },
   "keywords": [],
   "dependencies": {
