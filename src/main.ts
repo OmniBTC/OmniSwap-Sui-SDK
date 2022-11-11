@@ -11,5 +11,3 @@ export {
   NetworkConfiguration,
   CONFIGS
 };
-
-export default SDK;
