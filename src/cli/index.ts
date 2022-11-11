@@ -3,7 +3,6 @@ import { Ed25519PublicKey } from '@mysten/sui.js';
 import {SDK,CONFIGS} from '../main'
 import { readConfig } from './readconfig';
 import { addHexPrefix } from '../utils/hex'
-import { delay } from '../utils/time'
 
 const program = new Command();
 const sdk = new SDK(CONFIGS.testnet);
