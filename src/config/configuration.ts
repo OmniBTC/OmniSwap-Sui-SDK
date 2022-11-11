@@ -21,7 +21,7 @@ export class NetworkConfiguration {
   
   export const TESTNET_CONFIG = new NetworkConfiguration(
     'testnet',
-     Network.DEVNET,
+     'https://fullnode.testnet.sui.io:443',
     '0x2918d7520ca9783a3ce34649c11631337e5a69a3',
     '0x10638d1453b122aacdcd06ddb4bb5839d0869aa5',
     '0xc5436198558e515e7fe5adc45084591cef140c31'

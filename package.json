@@ -10,16 +10,21 @@
     "clean": "rm -rf dist build package",
     "ts-node": "ts-node",
     "docs": "typedoc --entryPoints src/main.ts",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "build-cli": "rm -rf dist; rollup -c rollup.config.cli.js",
+    "cli": "node cli/index.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@mysten/sui.js": "^0.15.0",
+    "@rollup/plugin-typescript": "^9.0.2",
     "@types/dotenv": "^8.2.0",
     "decimal.js": "^10.4.2",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "rollup": "^3.2.5"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
