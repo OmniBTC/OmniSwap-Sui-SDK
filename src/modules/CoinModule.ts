@@ -59,8 +59,8 @@ export class CoinModule implements IModule {
     }
 
     async buildFaucetTransaction(coinTypeArg: string) {
-        const faucetPackageId = "0x6674cb08a6ef2a155b3c341a8697572898f0e4d1";
-        const faucetObjectId = "0xa1edadeb50fc367837b6d37f361d6f7ee4688fdb";
+        const faucetPackageId = "0x07a38a173a0ff372669de25ab92901243de7f0ec";
+        const faucetObjectId = "0x7cf7b75bb4e6530d7f971702043753224d40cc01";
         const txn:MoveCallTransaction = {
             packageObjectId: faucetPackageId,
             module: 'faucet',

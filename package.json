@@ -1,17 +1,17 @@
 {
   "name": "@omnibtc/omniswap-sui-sdk",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "",
   "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/main.mjs",
+      "require": "./dist/main.js"
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "main": "dist/main.js",
+  "module": "dist/main.mjs",
+  "typings": "dist/main.d.ts",
   "files": [
     "src",
     "dist"
