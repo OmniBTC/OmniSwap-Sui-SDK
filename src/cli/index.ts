@@ -21,12 +21,7 @@ const walletFaucet = async () => {
    console.log(address)
    // eslint-disable-next-line no-constant-condition
    while (true) {
-    console.log('请求水龙头')
-    await sdk.Coin.faucetSui(address)
-    await delay(100)
-    await sdk.Coin.faucetSui("0xda4fd3759e6c5cee43f2ec08e2d77a3dfdcee132")
-    await delay(100)
-    
+    await sdk.Coin.faucetSui(address)    
    }
 
 };
