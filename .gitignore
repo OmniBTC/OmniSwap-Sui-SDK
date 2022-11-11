@@ -12,3 +12,4 @@ jenkinsfileOnProd
 /deploy/
 Dockerfile
 nginx.config
+cli/
