@@ -73,15 +73,19 @@ export class CoinModule implements IModule {
         return txn;
     }
 
-    async faucetSui( address:string) {
-        const res = await axios.post<{ error: any }>(
-            'https://faucet.testnet.sui.io/gas',
-            { FixedAmountRequest: { recipient: address } }
-        );
-        if (res.data.error) {
-            console.log(res.data.error)
+    async faucetSui( address:string):Promise<boolean> {
+        try {
+            const res = await axios.post<{ error: any }>(
+                'https://faucet.testnet.sui.io/gas',
+                { FixedAmountRequest: { recipient: address } }
+            );
+            if (res.data.error) {
+                throw Error(res.data.error);   
+            }
+        }catch(err) {
+            Promise.reject(err)
         }
-        return address;
+        return Promise.resolve(true);
     }
 
     async buildSpiltTransaction(signerAddress: string, splitTxn:SplitCoinTransaction) {

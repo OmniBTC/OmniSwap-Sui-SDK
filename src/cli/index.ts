@@ -3,6 +3,7 @@ import { Ed25519PublicKey } from '@mysten/sui.js';
 import {SDK,CONFIGS} from '../main'
 import { readConfig } from './readconfig';
 import { addHexPrefix } from '../utils/hex'
+import { delay } from '../utils/time';
 
 const program = new Command();
 const sdk = new SDK(CONFIGS.testnet);
@@ -29,9 +30,11 @@ const facuet= async (address:string) => {
     let i = 0;
     // eslint-disable-next-line no-constant-condition
     while (true) {
-      i++;
-      console.log('faucet sui token ', i)
-     await sdk.Coin.faucetSui(address)    
+      console.log('faucet sui token ', i++)
+      sdk.Coin.faucetSui(address).catch(err=>{
+        console.log('error to faucet sui ' + err);
+      })
+      delay(1)
     }
 };
 
