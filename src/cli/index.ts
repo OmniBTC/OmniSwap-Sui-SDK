@@ -31,10 +31,12 @@ const facuet= async (address:string) => {
     // eslint-disable-next-line no-constant-condition
     while (true) {
       console.log('faucet sui token ', i++)
-      sdk.Coin.faucetSui(address).catch(err=>{
+      sdk.Coin.faucetSui(address).then(res => {
+        console.log('faucet sui token success ' + res);
+      }).catch(err=>{
         console.log('error to faucet sui ' + err);
       })
-      delay(1)
+      await delay(100)
     }
 };
 
