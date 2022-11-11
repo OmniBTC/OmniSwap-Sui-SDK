@@ -1,9 +1,0 @@
-2022-11-11T06:02:01.937489Z  WARN sui::sui_commands: Client/Server api version mismatch, client api version : 0.16.0, server api version : 0.15.0
-2022-11-11T06:02:01.938113Z  INFO sui::client_commands: Showing 1 results.
-2022-11-11T06:02:01.938126Z  INFO sui::client_commands: 0x4d7a8549beb8d9349d76a71fd4f479513622532b
-2022-11-11T06:02:35.978297Z  WARN sui::sui_commands: Client/Server api version mismatch, client api version : 0.16.0, server api version : 0.15.0
-2022-11-11T06:02:35.978816Z  INFO sui::client_commands: Showing 1 results.
-2022-11-11T06:02:35.978827Z  INFO sui::client_commands: 0x4d7a8549beb8d9349d76a71fd4f479513622532b
-2022-11-11T06:03:18.997403Z  WARN sui::sui_commands: Client/Server api version mismatch, client api version : 0.16.0, server api version : 0.15.0
-2022-11-11T06:03:18.997593Z  INFO sui::client_commands: Showing 1 results.
-2022-11-11T06:03:18.997600Z  INFO sui::client_commands: 0x4d7a8549beb8d9349d76a71fd4f479513622532b
