@@ -73,8 +73,8 @@ export class CoinModule implements IModule {
         return txn;
     }
 
-    async faucetSui( address:string):Promise<boolean> {
-        const res = await axios.post<{ error: any }>(
+    async faucetSui(address:string):Promise<boolean> {
+        const res = await axios.post<{ error: Error }>(
             'https://faucet.testnet.sui.io/gas',
             { FixedAmountRequest: { recipient: address } }
         );

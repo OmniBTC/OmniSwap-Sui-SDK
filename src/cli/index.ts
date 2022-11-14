@@ -4,6 +4,7 @@ import {SDK,CONFIGS} from '../main'
 import { readConfig } from './readconfig';
 import { addHexPrefix } from '../utils/hex'
 import { delay } from '../utils/time';
+import { SUI_COIN_TYPE } from '../constants';
 
 const program = new Command();
 const sdk = new SDK(CONFIGS.testnet);
@@ -18,7 +19,8 @@ const wallet= async () => {
    const { keypair } = readConfig(program);
    const ed25519PublicKey =  new  Ed25519PublicKey(keypair.getPublicKey())
    const address = addHexPrefix(ed25519PublicKey.toSuiAddress())
-   console.log(address)
+   const suiBalance = await sdk.Coin.getCoinBalance(address,SUI_COIN_TYPE);
+   console.log(`address: ${address} sui balance: ${  suiBalance.balance }`);
 };
   
 program.command('omniswap:wallet')
