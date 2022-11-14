@@ -140,7 +140,7 @@ export class PoolModule implements IModule {
         params.coin_x_amount * params.slippage, params.coin_y_objectIds,params.coin_y_amount,params.coin_y_amount*params.slippage],
        typeArguments: [params.coin_x,params.coin_y],
        gasPayment: params.gasPaymentObjectId,
-       gasBudget: 10000,
+       gasBudget: 20000,
      }
      return txn;
    } 

@@ -36,7 +36,7 @@ const facuet= async (address:string) => {
       }).catch(err=>{
         console.log('error to faucet sui ' + err);
       })
-      await delay(100)
+      await delay(1000)
     }
 };
 
