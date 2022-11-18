@@ -1,5 +1,4 @@
 import { getObjectId, Coin,MoveCallTransaction,SplitCoinTransaction,MergeCoinTransaction } from '@mysten/sui.js';
-import axios from 'axios';
 import { IModule } from '../interfaces/IModule'
 import { SDK } from '../sdk';
 
@@ -71,17 +70,6 @@ export class CoinModule implements IModule {
             gasBudget: 10000,
         }
         return txn;
-    }
-
-    async faucetSui(address:string):Promise<boolean> {
-        const res = await axios.post<{ error: Error }>(
-            'https://faucet.testnet.sui.io/gas',
-            { FixedAmountRequest: { recipient: address } }
-        );
-        if (res.data.error) {
-            Promise.reject(res.data.error);   
-        }
-        return Promise.resolve(true);
     }
 
     async buildSpiltTransaction(signerAddress: string, splitTxn:SplitCoinTransaction) {

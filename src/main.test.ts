@@ -15,7 +15,7 @@ describe('Pool Module',()=>{
 
 describe('Token Module',()=>{
     const sdk = new SDK(CONFIGS.testnet);
-    const address = '0x09761aebdb103269c42265cc0aa646620234e7c8';
+    const address = '0xda4fd3759e6c5cee43f2ec08e2d77a3dfdcee132';
     test('get token balance',async()=>{
         const sui = await sdk.Coin.getCoinBalance(address,SUI_COIN_TYPE);
         console.log(`sui balance: ${sui.balance}`)
