@@ -66,7 +66,7 @@ const token = await sdk.Coin.getTokenBalance(address,SUI_COIN_TYPE);
 ## CLI
 yarn cli
 ```
- ____            _              _      __  __   __  __            ____   _       ___ 
+  ____            _              _      __  __   __  __            ____   _       ___ 
  / ___|   _   _  (_)            / \    |  \/  | |  \/  |          / ___| | |     |_ _|
  \___ \  | | | | | |  _____    / _ \   | |\/| | | |\/| |  _____  | |     | |      | | 
   ___) | | |_| | | | |_____|  / ___ \  | |  | | | |  | | |_____| | |___  | |___   | | 
@@ -82,6 +82,8 @@ Commands:
   omniswap:faucet <coin_type>                                                                                                                     faucet token
   omniswap:wallet                                                                                                                                 print wallet 
   omniswap:addLiquid <coin_x_type> <coin_y_type> <coin_x_object_ids> <coin_x_amount> <coin_y_object_ids> <coin_y_amount> <slippage> <gaspayment>  add liquid
+  omniswap:removeLiquid <coin_x_type> <coin_y_type> <lp_coin_object_ids> <gaspayment>                                                             add liquid
+  omniswap:list_pools                                                                                                                             list all pools
   help [command]                                                                                                                                  display help for command
 ```
 
