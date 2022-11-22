@@ -62,7 +62,6 @@ export const REQUESTS_MAINNET: RawCoinInfo[] = [
 
 export const REQUESTS_TESTNET: RawCoinInfo[] = [
 
-
     {
       "name": "Tether USD",
       "symbol": "USDT",
