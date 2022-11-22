@@ -1,0 +1,9 @@
+export declare const SUI_COIN_TYPE = "0x2::sui::SUI";
+export declare const USDT_COIN_TYPE = "0x985c26f5edba256380648d4ad84b202094a4ade3::usdt::USDT";
+export declare const XBTC_COIN_TYPE = "0x985c26f5edba256380648d4ad84b202094a4ade3::xbtc::XBTC";
+export declare const BTC_COIN_TYPE = "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::btc::BTC";
+export declare const ETH_COIN_TYPE = "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::eth::ETH";
+export declare const BNB_COIN_TYPE = "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::bnb::BNB";
+export declare const FEE_MULTIPLIER = 30;
+export declare const FEE_SCALE = 10000;
+//# sourceMappingURL=constants.d.ts.map
