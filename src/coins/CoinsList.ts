@@ -80,7 +80,6 @@ export const REQUESTS_TESTNET: RawCoinInfo[] = [
         "data": []
       }
     },
-   
     {
       "name": "XBTC",
       "symbol": "XBTC",
@@ -116,5 +115,60 @@ export const REQUESTS_TESTNET: RawCoinInfo[] = [
       "extensions": {
         "data": []
       }
-    }
+    },
+    {
+      "name": "BTC",
+      "symbol": "BTC",
+      "official_symbol": "BTC",
+      "coingecko_id": "",
+      "decimals": 8,
+      "logo_url": "https://coming-website.s3.us-east-2.amazonaws.com/icon_xbtc_30.png",
+      "project_url": "https://github.com/OmniBTC/OmniBridge",
+      "token_type": {
+        "type": "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::btc::BTC",
+        "account_address": "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1",
+        "module_name": "btc",
+        "struct_name": "BTC"
+      },
+      "extensions": {
+        "data": []
+      }
+    },
+    {
+      "name": "Binance Coin",
+      "symbol": "BNB",
+      "official_symbol": "BNB",
+      "coingecko_id": "binancecoin",
+      "decimals": 8,
+      "logo_url": "https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/BNB.svg",
+      "project_url": "",
+      "token_type": {
+        "type": "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::bnb::BNB",
+        "account_address": "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1",
+        "module_name": "bnb",
+        "struct_name": "BNB"
+      },
+      "extensions": {
+        "data": []
+      }
+    },
+
+    {
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "official_symbol": "ETH",
+      "coingecko_id": "eth",
+      "decimals": 6,
+      "logo_url": "https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/WETH.svg",
+      "project_url": "",
+      "token_type": {
+        "type": "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::eth::ETH",
+        "account_address": "0xed67ff7ca06c2af6353fcecc69e312a0588dbab1",
+        "module_name": "eth",
+        "struct_name": "ETH"
+      },
+      "extensions": {
+        "data": []
+      }
+    },
 ]

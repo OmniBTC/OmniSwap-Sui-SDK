@@ -1,6 +1,6 @@
 {
   "name": "@omnibtc/omniswap-sui-sdk",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "",
   "sideEffects": false,
   "exports": {
