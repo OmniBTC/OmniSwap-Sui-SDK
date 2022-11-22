@@ -87,6 +87,5 @@ Commands:
 
 ### Add Liquid
 ```
-yarn cli -c ~/.sui/sui_config omniswap:addLiquid 0x985c26f5edba256380648d4ad84b202094a4ade3::usdt::USDT 0x985c26f5edba256380648d4ad84b202094a4ade3::xbtc::XBTC 0xc9e9cd5042b0df537426abc1e2f4b20babd07186 1 0xc9e9cd5042b0df537426abc1e2f4b20babd07186 1 0.8 
-0xf3a028216f202bba58f2520a3ed6aca6c5d4275e
+yarn cli -c ~/.sui/sui_config omniswap:addLiquid 0x985c26f5edba256380648d4ad84b202094a4ade3::usdt::USDT 0x985c26f5edba256380648d4ad84b202094a4ade3::xbtc::XBTC 0xc9e9cd5042b0df537426abc1e2f4b20babd07186 1 0xc9e9cd5042b0df537426abc1e2f4b20babd07186 1 0.8 0xf3a028216f202bba58f2520a3ed6aca6c5d4275e
 ```
