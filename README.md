@@ -95,6 +95,18 @@ yarn cli -c ~/.sui/sui_config omniswap:addLiquid 0xed67ff7ca06c2af6353fcecc69e31
 ```
 yarn cli -c ~/.sui/sui_config omniswap:addLiquid 0x985c26f5edba256380648d4ad84b202094a4ade3::usdt::USDT 0x985c26f5edba256380648d4ad84b202094a4ade3::xbtc::XBTC 0xc9e9cd5042b0df537426abc1e2f4b20babd07186 999999998000 0x74d246f80c53ab48d0b7b23387d8e1dc64536265 9999998000 0.2 0xf3a028216f202bba58f2520a3ed6aca6c5d4275e
 ```
+* BTC-USDT Pool
+```
+yarn cli -c ~/.sui/sui_config omniswap:addLiquid 0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::btc::BTC 0x985c26f5edba256380648d4ad84b202094a4ade3::usdt::USDT 0x73ea04683c9fb1a7621d4bd48fd9542d6b9d45dc 10000000000000 0x21170033ca498d40ae12caa331e045e40a20c99f 10000000000000 0.2 0xf3a028216f202bba58f2520a3ed6aca6c5d4275e
+```
+* ETH-USDT Pool
+```
+yarn cli -c ~/.sui/sui_config omniswap:addLiquid 0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::eth::ETH 0x985c26f5edba256380648d4ad84b202094a4ade3::usdt::USDT 0x69cce60989e7c9e413031481d10bdbc165f854d0 10000000000000 0x262439fc8cd278eaf74c8fe464f54ea6b73d1c58 10000000000000 0.2 0xf3a028216f202bba58f2520a3ed6aca6c5d4275e
+```
+* BNB-USDT Pool
+```
+yarn cli -c ~/.sui/sui_config omniswap:addLiquid 0xed67ff7ca06c2af6353fcecc69e312a0588dbab1::bnb::BNB 0x985c26f5edba256380648d4ad84b202094a4ade3::usdt::USDT 0x572ddd6021e94c1cb938a58a549667853ff3d222 10000000000000 0x572ddd6021e94c1cb938a58a549667853ff3d222 10000000000000 0.2 0xf3a028216f202bba58f2520a3ed6aca6c5d4275e
+```
 
 ### Remove Liquid
 ```
