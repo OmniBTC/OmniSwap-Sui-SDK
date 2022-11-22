@@ -62,3 +62,31 @@ const address = '0x036e2406b8cf1fc4541ed6d0e252c77b094d0fd9';
 ...
 const token = await sdk.Coin.getTokenBalance(address,SUI_COIN_TYPE);
 ```
+
+## CLI
+yarn cli
+```
+ ____            _              _      __  __   __  __            ____   _       ___ 
+ / ___|   _   _  (_)            / \    |  \/  | |  \/  |          / ___| | |     |_ _|
+ \___ \  | | | | | |  _____    / _ \   | |\/| | | |\/| |  _____  | |     | |      | | 
+  ___) | | |_| | | | |_____|  / ___ \  | |  | | | |  | | |_____| | |___  | |___   | | 
+ |____/   \__,_| |_|         /_/   \_\ |_|  |_| |_|  |_|          \____| |_____| |___|
+                                                                                      
+Usage: index [options] [command]
+
+Options:
+  -c, --config <path>                                                                                                                             path to your sui config.yml (generated with "sui client active-address")
+  -h, --help                                                                                                                                      display help for command
+
+Commands:
+  omniswap:faucet <coin_type>                                                                                                                     faucet token
+  omniswap:wallet                                                                                                                                 print wallet 
+  omniswap:addLiquid <coin_x_type> <coin_y_type> <coin_x_object_ids> <coin_x_amount> <coin_y_object_ids> <coin_y_amount> <slippage> <gaspayment>  add liquid
+  help [command]                                                                                                                                  display help for command
+```
+
+### Add Liquid
+```
+yarn cli -c ~/.sui/sui_config omniswap:addLiquid 0x985c26f5edba256380648d4ad84b202094a4ade3::usdt::USDT 0x985c26f5edba256380648d4ad84b202094a4ade3::xbtc::XBTC 0xc9e9cd5042b0df537426abc1e2f4b20babd07186 1 0xc9e9cd5042b0df537426abc1e2f4b20babd07186 1 0.8 
+0xf3a028216f202bba58f2520a3ed6aca6c5d4275e
+```
