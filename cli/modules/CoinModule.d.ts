@@ -11,6 +11,13 @@ export interface CoinObjects {
     balance: bigint;
     objects: CoinInfo[];
 }
+export declare type CreateAdminMintPayloadParams = {
+    coinTypeArg: string;
+    coinCapLock: string;
+    walletAddress: string;
+    amount: number;
+    gasBudget?: number;
+};
 export declare class CoinModule implements IModule {
     protected _sdk: SDK;
     get sdk(): SDK;
@@ -20,6 +27,7 @@ export declare class CoinModule implements IModule {
         objects: CoinInfo[];
     }>;
     buildFaucetTokenTransaction(coinTypeArg: string): Promise<MoveCallTransaction>;
+    buildAdminMintTestTokensTransaction(createAdminMintPayloadParams: CreateAdminMintPayloadParams): Promise<MoveCallTransaction>;
     buildSpiltTransaction(signerAddress: string, splitTxn: SplitCoinTransaction): Promise<Uint8Array>;
     buildMergeTransaction(signerAddress: string, mergeTxn: MergeCoinTransaction): Promise<Uint8Array>;
 }

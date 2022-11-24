@@ -10,7 +10,7 @@ export declare type CreateAddLiquidTXPayloadParams = {
     coin_y_objectIds: string[];
     coin_x_amount: number;
     coin_y_amount: number;
-    gasPaymentObjectId: string;
+    gasPaymentObjectId?: string;
     slippage: number;
 };
 export declare type CreateRemoveLiquidTXPayloadParams = {

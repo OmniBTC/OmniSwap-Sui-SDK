@@ -7,6 +7,8 @@ export class NetworkConfiguration {
       public packageObjectId: string,
       public globalId: string,
       public poolsDynamicId: string,
+      public faucetPackageId:string,
+      public faucetObjectId:string,
       public isMainNet = false
     ) {}
   }
@@ -16,7 +18,9 @@ export class NetworkConfiguration {
     'https://fullnode.mainnet.sui.io:443',
     '0x1f0d4d3ca884a1a6958fe5ba9dc6d8003d9f7d76',
     '0x92131c160fa0f1b95190a3a7cbfa32d0149ab00f',
-    '0x19465f7b8008aa1443269808840856a3c8b2c119'
+    '0x19465f7b8008aa1443269808840856a3c8b2c119',
+    "",
+    ""
   );
   
   export const TESTNET_CONFIG = new NetworkConfiguration(
@@ -24,7 +28,9 @@ export class NetworkConfiguration {
      'https://fullnode.testnet.sui.io:443',
     '0xc648bfe0d87c25e0436d720ba8f296339bdba5c3',
     '0x254cf7b848688aa86a8eb69677bbe2e4c46ecf50',
-    '0x81c0cfc53769aaaacee87b4dd8e827e7a86afb8c'
+    '0x81c0cfc53769aaaacee87b4dd8e827e7a86afb8c',
+    "0x985c26f5edba256380648d4ad84b202094a4ade3",
+    "0x50ed67cc1d39a574301fa8d71a47419e9b297bab"
   );
 
   export const CONFIGS = {

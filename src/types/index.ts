@@ -23,4 +23,4 @@ export type TxPayloadCallFunction = {
     typeArguments: string[];
     arguments: string[];
     gasBudget: number;
-  };
+};

@@ -14,7 +14,7 @@ export type CreateAddLiquidTXPayloadParams = {
   coin_y_objectIds: string[],
   coin_x_amount: number;
   coin_y_amount: number;
-  gasPaymentObjectId: string;
+  gasPaymentObjectId?: string;
   slippage: number;
 }
 
@@ -146,7 +146,6 @@ export class PoolModule implements IModule {
           params.coin_y_amount*params.slippage
         ],
        typeArguments: [params.coin_x,params.coin_y],
-       gasPayment: params.gasPaymentObjectId,
        gasBudget: 20000,
      }
      return txn;

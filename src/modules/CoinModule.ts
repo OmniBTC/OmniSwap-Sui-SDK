@@ -15,6 +15,14 @@ export interface CoinObjects {
     objects: CoinInfo[]
 } 
 
+export type CreateAdminMintPayloadParams = {
+    coinTypeArg: string;
+    coinCapLock:string,
+    walletAddress:string,
+    amount: number,
+    gasBudget?: number,
+}
+
 export class CoinModule implements IModule {
     protected _sdk: SDK;
     
@@ -59,8 +67,8 @@ export class CoinModule implements IModule {
     }
 
     async buildFaucetTokenTransaction(coinTypeArg: string) {
-        const faucetPackageId = "0x985c26f5edba256380648d4ad84b202094a4ade3";
-        const faucetObjectId = "0x50ed67cc1d39a574301fa8d71a47419e9b297bab";
+        const faucetPackageId = this.sdk.networkOptions.faucetPackageId;
+        const faucetObjectId = this.sdk.networkOptions.faucetObjectId;
         const txn:MoveCallTransaction = {
             packageObjectId: faucetPackageId,
             module: 'faucet',
@@ -68,6 +76,23 @@ export class CoinModule implements IModule {
             arguments: [faucetObjectId],
             typeArguments: [coinTypeArg],
             gasBudget: 10000,
+        }
+        return txn;
+    }
+    
+    // only admin
+    async buildAdminMintTestTokensTransaction(createAdminMintPayloadParams: CreateAdminMintPayloadParams) {
+        const faucetPackageId = this.sdk.networkOptions.faucetPackageId;
+        const txn:MoveCallTransaction = {
+            packageObjectId: faucetPackageId,
+            module: 'lock',
+            function: 'mint_and_transfer',
+            arguments: [
+                createAdminMintPayloadParams.coinCapLock,
+                createAdminMintPayloadParams.amount,
+                createAdminMintPayloadParams.walletAddress],
+            typeArguments: [createAdminMintPayloadParams.coinTypeArg],
+            gasBudget: createAdminMintPayloadParams.gasBudget ? createAdminMintPayloadParams.gasBudget : 10000,
         }
         return txn;
     }

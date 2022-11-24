@@ -4,8 +4,10 @@ export declare class NetworkConfiguration {
     packageObjectId: string;
     globalId: string;
     poolsDynamicId: string;
+    faucetPackageId: string;
+    faucetObjectId: string;
     isMainNet: boolean;
-    constructor(name: string, fullNodeUrl: string, packageObjectId: string, globalId: string, poolsDynamicId: string, isMainNet?: boolean);
+    constructor(name: string, fullNodeUrl: string, packageObjectId: string, globalId: string, poolsDynamicId: string, faucetPackageId: string, faucetObjectId: string, isMainNet?: boolean);
 }
 export declare const MAINNET_CONFIG: NetworkConfiguration;
 export declare const TESTNET_CONFIG: NetworkConfiguration;
