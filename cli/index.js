@@ -779,15 +779,24 @@ const adminAddAllLiquidCmd = (program) => __awaiter(void 0, void 0, void 0, func
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const bnbObject = suiAmmSdk.Coin.getCoinBalance(address, bnbTokenArg);
         console.log(`token: ${bnbTokenArg} balance: ${(yield bnbObject).balance}`);
+        const ethTokenArg = tokenTypeArgList.find(token => token.includes('ETH'));
+        const ethObject = suiAmmSdk.Coin.getCoinBalance(address, ethTokenArg);
+        console.log(`token: ${ethTokenArg} balance: ${(yield ethObject).balance}`);
+        const btcTokenArg = tokenTypeArgList.find(token => token.includes('btc::BTC'));
+        const btcObject = suiAmmSdk.Coin.getCoinBalance(address, btcTokenArg);
+        console.log(`token: ${btcTokenArg} balance: ${(yield btcObject).balance}`);
         // 2. USDT TOKEN
         const usdtTokenArg = tokenTypeArgList.find(token => token.includes('USDT'));
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const usdtObject = suiAmmSdk.Coin.getCoinBalance(address, usdtTokenArg);
         console.log(`token: ${usdtTokenArg} balance: ${(yield usdtObject).balance}`);
         const bnbList = [(yield bnbObject).objects[0].id];
-        const usdtList = [(yield usdtObject).objects[0].id];
+        const ethList = [(yield ethObject).objects[0].id];
+        const btcList = [(yield btcObject).objects[0].id];
         // 3. add BNB-USDT liquid
-        yield excuteAddliquid(bnbTokenArg, usdtTokenArg, bnbList, usdtList);
+        yield excuteAddliquid(bnbTokenArg, usdtTokenArg, bnbList, [(yield usdtObject).objects[0].id]);
+        yield excuteAddliquid(ethTokenArg, usdtTokenArg, ethList, [(yield usdtObject).objects[1].id]);
+        yield excuteAddliquid(btcTokenArg, usdtTokenArg, btcList, [(yield usdtObject).objects[2].id]);
     });
     program.command('omniswap:adminAddAllLiquid')
         .description('admin add liquid')

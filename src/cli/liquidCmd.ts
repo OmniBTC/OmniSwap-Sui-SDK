@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { readConfig } from './readConfig';
-import { Command, program } from 'commander';
-import { getCreatedObjects, getObjectReference, getTransactionEffects } from '@mysten/sui.js';
+import { Command } from 'commander';
+import { getCreatedObjects, getTransactionEffects } from '@mysten/sui.js';
 import { CreateAddLiquidTXPayloadParams,CreateRemoveLiquidTXPayloadParams } from '../modules';
 import { addHexPrefix } from '../utils/hex';
 import { randomInt } from 'crypto';
@@ -171,6 +171,15 @@ export const adminAddAllLiquidCmd = async (
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const bnbObject = suiAmmSdk.Coin.getCoinBalance(address,bnbTokenArg!);
         console.log(`token: ${bnbTokenArg} balance: ${(await bnbObject).balance}`)
+
+        const ethTokenArg = tokenTypeArgList.find(token=> token.includes('ETH'));
+        const ethObject = suiAmmSdk.Coin.getCoinBalance(address,ethTokenArg!);
+        console.log(`token: ${ethTokenArg} balance: ${(await ethObject).balance}`)
+
+        const btcTokenArg = tokenTypeArgList.find(token=> token.includes('btc::BTC'));
+        const btcObject = suiAmmSdk.Coin.getCoinBalance(address,btcTokenArg!);
+        console.log(`token: ${btcTokenArg} balance: ${(await btcObject).balance}`)
+
         // 2. USDT TOKEN
         const usdtTokenArg = tokenTypeArgList.find(token=> token.includes('USDT'));
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -178,9 +187,13 @@ export const adminAddAllLiquidCmd = async (
         console.log(`token: ${usdtTokenArg} balance: ${(await usdtObject).balance}`)
 
         const bnbList = [(await bnbObject).objects[0].id];
-        const usdtList = [(await usdtObject).objects[0].id];
+        const ethList =  [(await ethObject).objects[0].id];
+        const btcList =  [(await btcObject).objects[0].id];
+        
         // 3. add BNB-USDT liquid
-        await excuteAddliquid(bnbTokenArg!,usdtTokenArg!,bnbList,usdtList);    
+        await excuteAddliquid(bnbTokenArg!,usdtTokenArg!,bnbList,[(await usdtObject).objects[0].id]);    
+        await excuteAddliquid(ethTokenArg!,usdtTokenArg!,ethList,[(await usdtObject).objects[1].id]);    
+        await excuteAddliquid(btcTokenArg!,usdtTokenArg!,btcList,[(await usdtObject).objects[2].id]);    
 
     };
     program.command('omniswap:adminAddAllLiquid')
