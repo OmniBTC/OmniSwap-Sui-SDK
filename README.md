@@ -5,19 +5,19 @@ The typescript SDK for [Sui-AMM-swap](https://github.com/OmniBTC/Sui-AMM-swap)
 [OmniSwap Sui SDK docs](https://docs-omniswap-sui.omnibtc.finance)
 
 ## Testnet
-swap_package=0xe4dfb7dca0d54f5cc51ed39d847251417666b7c1
-swap_global=0x5faf9ee713fa866766ac448f2b634074c23851e3
-test_coins_package=0x0a3af85362a35154ce5f513bada2d38887d8a66f
-test_coins_faucet=0x41ed95838a6e03d172b4d55f3cdebe66cd1a3de2
+* swap_package=0xe4dfb7dca0d54f5cc51ed39d847251417666b7c1
+* swap_global=0x5faf9ee713fa866766ac448f2b634074c23851e3
+* test_coins_package=0x0a3af85362a35154ce5f513bada2d38887d8a66f
+* test_coins_faucet=0x41ed95838a6e03d172b4d55f3cdebe66cd1a3de2
 
-$test_coins_package::coins::USDT
-$test_coins_package::coins::XBTC
-$test_coins_package::coins::BTC
-$test_coins_package::coins::ETH
-$test_coins_package::coins::BNB
-$test_coins_package::coins::WBTC
-$test_coins_package::coins::USDC
-$test_coins_package::coins::DAI
+* $test_coins_package::coins::USDT
+* $test_coins_package::coins::XBTC
+* $test_coins_package::coins::BTC
+* $test_coins_package::coins::ETH
+* $test_coins_package::coins::BNB
+* $test_coins_package::coins::WBTC
+* $test_coins_package::coins::USDC
+* $test_coins_package::coins::DAI
 
 ## Usage
 
