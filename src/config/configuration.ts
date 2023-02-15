@@ -26,11 +26,11 @@ export class NetworkConfiguration {
   export const TESTNET_CONFIG = new NetworkConfiguration(
     'testnet',
      'https://fullnode.testnet.sui.io:443',
-    '0xc648bfe0d87c25e0436d720ba8f296339bdba5c3',
-    '0x254cf7b848688aa86a8eb69677bbe2e4c46ecf50',
-    '0x81c0cfc53769aaaacee87b4dd8e827e7a86afb8c',
-    "0x985c26f5edba256380648d4ad84b202094a4ade3",
-    "0x50ed67cc1d39a574301fa8d71a47419e9b297bab"
+    '0xe4dfb7dca0d54f5cc51ed39d847251417666b7c1',
+    '0x5faf9ee713fa866766ac448f2b634074c23851e3',
+    '0x5a9772c7c3346dd1834873c07b0e2076a38d5d8e',
+    "0x0a3af85362a35154ce5f513bada2d38887d8a66f",
+    "0x41ed95838a6e03d172b4d55f3cdebe66cd1a3de2"
   );
 
   export const CONFIGS = {
