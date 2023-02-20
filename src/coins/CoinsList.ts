@@ -186,7 +186,7 @@ export const REQUESTS_DEVNET: RawCoinInfo[] = [
     "token_type": {
       "type": "0x7263b90384c15e1bffe5757d9eaa0235264bd294::coins::USDT",
       "account_address": "0x7263b90384c15e1bffe5757d9eaa0235264bd294",
-      "module_name": "usdt",
+      "module_name": "coins",
       "struct_name": "USDT"
     },
     "extensions": {
@@ -204,7 +204,7 @@ export const REQUESTS_DEVNET: RawCoinInfo[] = [
     "token_type": {
       "type": "0x7263b90384c15e1bffe5757d9eaa0235264bd294::coins::XBTC",
       "account_address": "0x7263b90384c15e1bffe5757d9eaa0235264bd294",
-      "module_name": "xbtc",
+      "module_name": "coins",
       "struct_name": "XBTC"
     },
     "extensions": {
@@ -240,7 +240,7 @@ export const REQUESTS_DEVNET: RawCoinInfo[] = [
     "token_type": {
       "type": "0x7263b90384c15e1bffe5757d9eaa0235264bd294::coins::BTC",
       "account_address": "0x7263b90384c15e1bffe5757d9eaa0235264bd294",
-      "module_name": "btc",
+      "module_name": "coins",
       "struct_name": "BTC"
     },
     "extensions": {
@@ -258,7 +258,7 @@ export const REQUESTS_DEVNET: RawCoinInfo[] = [
     "token_type": {
       "type": "0x7263b90384c15e1bffe5757d9eaa0235264bd294::coins::BNB",
       "account_address": "0x7263b90384c15e1bffe5757d9eaa0235264bd294",
-      "module_name": "bnb",
+      "module_name": "coins",
       "struct_name": "BNB"
     },
     "extensions": {
@@ -277,7 +277,7 @@ export const REQUESTS_DEVNET: RawCoinInfo[] = [
     "token_type": {
       "type": "0x7263b90384c15e1bffe5757d9eaa0235264bd294::coins::ETH",
       "account_address": "0x7263b90384c15e1bffe5757d9eaa0235264bd294",
-      "module_name": "eth",
+      "module_name": "coins",
       "struct_name": "ETH"
     },
     "extensions": {
