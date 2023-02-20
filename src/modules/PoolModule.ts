@@ -40,14 +40,14 @@ export class PoolModule implements IModule {
    // eslint-disable-next-line @typescript-eslint/no-empty-function
    async getPoolList():Promise<Pool[]>{  
       const { poolsDynamicId } = this.sdk.networkOptions;
-      const poolsObjects = await this._sdk.jsonRpcProvider.getObjectsOwnedByObject(
+      const poolsObjects = await this._sdk.jsonRpcProvider.getDynamicFields(
         poolsDynamicId
       );
       const pools:Pool[] = [];
-      poolsObjects.forEach(pool=> {
+      poolsObjects?.data?.forEach(pool=> {
         pools.push({
           pool_addr: pool['objectId'],
-          pool_type: pool['type'],
+          pool_type: pool['objectType'],
         })
       })
       return Promise.resolve(pools)

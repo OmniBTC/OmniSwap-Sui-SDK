@@ -97,20 +97,20 @@ export class CoinModule implements IModule {
         return txn;
     }
 
-    async buildSpiltTransaction(signerAddress: string, splitTxn:SplitCoinTransaction) {
-        const serializer = await this._sdk.serializer.newSplitCoin(
-            signerAddress,
-            splitTxn
-        );
-        return serializer.getData();
-    }
+    // async buildSpiltTransaction(signerAddress: string, splitTxn:SplitCoinTransaction) {
+    //     const serializer = await this._sdk.serializer.serializeToByte(
+    //         signerAddress,
+    //         splitTxn
+    //     );
+    //     return serializer.getData();
+    // }
 
-    async buildMergeTransaction(signerAddress: string, mergeTxn:MergeCoinTransaction) {
-        const serializer = await this._sdk.serializer.newMergeCoin(
-            signerAddress,
-            mergeTxn
-        );
-        return serializer.getData();
-    }
+    // async buildMergeTransaction(signerAddress: string, mergeTxn:MergeCoinTransaction) {
+    //     const serializer = await this._sdk.serializer.newMergeCoin(
+    //         signerAddress,
+    //         mergeTxn
+    //     );
+    //     return serializer.getData();
+    // }
  }
  
