@@ -33,8 +33,19 @@ export class NetworkConfiguration {
     "0x41ed95838a6e03d172b4d55f3cdebe66cd1a3de2"
   );
 
+  export const DEVNET_CONFIG = new NetworkConfiguration(
+    'devnet',
+     'https://fullnode.devnet.sui.io:443',
+    '0x1c189ff62eaf0b243e53963ca5dc4642fed3ceec',
+    '0x917d0dcb8c9b25989771be680a7349a508a8d172', 
+    '0xb73dc92e615e06983277e74713b88e7fa67fbf56',
+    '0x7263b90384c15e1bffe5757d9eaa0235264bd294',
+    '0xef4f724d57678dd4d8b8ceeb8eb937044c1f009f'
+  );
+
   export const CONFIGS = {
     mainnet: MAINNET_CONFIG,
-    testnet: TESTNET_CONFIG
+    testnet: TESTNET_CONFIG,
+    devnet: DEVNET_CONFIG,
   };
   
