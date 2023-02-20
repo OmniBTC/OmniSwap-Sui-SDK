@@ -55,7 +55,7 @@ export const addLiquidCmd = async (
         }
         console.log(`Add Liquid params: ${JSON.stringify(addLiquidParams)}`)
         const addLiquidTxn = await suiAmmSdk.Pool.buildAddLiquidTransAction(addLiquidParams);
-        const executeResponse = await rawSigner.executeMoveCallWithRequestType(addLiquidTxn,"WaitForEffectsCert");
+        const executeResponse = await rawSigner.executeMoveCall(addLiquidTxn,"WaitForEffectsCert");
         const response = getTransactionEffects(executeResponse)
         console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
     };
@@ -94,7 +94,7 @@ export const removeLiquidCmd = async (
         }
         console.log(`remove Liquid params: ${JSON.stringify(removeLiquidParams)}`)
         const removeLiquidTxn = await suiAmmSdk.Pool.buildRemoveLiquidTransAction(removeLiquidParams);
-        const executeResponse = await rawSigner.executeMoveCallWithRequestType(removeLiquidTxn,"WaitForEffectsCert");
+        const executeResponse = await rawSigner.executeMoveCall(removeLiquidTxn,"WaitForEffectsCert");
         const response = getTransactionEffects(executeResponse)
         console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
     };
@@ -126,7 +126,7 @@ export const adminMintTestTokenCmd= async(
                 amount: DEFAULT_MINT_AMOUNT,
                 gasBudget: DEFAULT_GAS_BUDGET + randomInt(1000)
             });
-            const executeResponse = await rawSigner.executeMoveCallWithRequestType(mintTxn,"WaitForEffectsCert");
+            const executeResponse = await rawSigner.executeMoveCall(mintTxn,"WaitForEffectsCert");
             const response = getTransactionEffects(executeResponse);
             const createTokenObjectId =  getCreatedObjects(executeResponse)?.[0].reference.objectId;
             console.log(`mint token: ${coinTypeArg} objectId: ${createTokenObjectId}`);
@@ -156,7 +156,7 @@ export const adminAddAllLiquidCmd = async (
         }
         console.log(`Add Liquid params: ${JSON.stringify(addLiquidParams)}`)
         const addLiquidTxn = await suiAmmSdk.Pool.buildAddLiquidTransAction(addLiquidParams);
-        const executeResponse = await rawSigner.executeMoveCallWithRequestType(addLiquidTxn,"WaitForEffectsCert");
+        const executeResponse = await rawSigner.executeMoveCall(addLiquidTxn,"WaitForEffectsCert");
         const response = getTransactionEffects(executeResponse)
         console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
     }

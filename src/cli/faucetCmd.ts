@@ -10,7 +10,7 @@ export const faucetTokenCmd = async (
     ) => {
         const { suiAmmSdk, rawSigner } = readConfig(program);
         const faucetTokenTxn = await suiAmmSdk.Coin.buildFaucetTokenTransaction(coin_type);
-        const executeResponse = await rawSigner.executeMoveCallWithRequestType(faucetTokenTxn,"WaitForEffectsCert");
+        const executeResponse = await rawSigner.executeMoveCall(faucetTokenTxn,"WaitForEffectsCert");
         const response = getTransactionEffects(executeResponse)
         console.log(`excute status: ${response?.status.status} digest: ${response?.transactionDigest} `)
     };
